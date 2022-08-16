@@ -13,7 +13,11 @@ module.exports = (sequelize) => {
 
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
+    },
+
+    image: {
+      type: DataTypes.STRING
     },
 
     summary: {
@@ -25,7 +29,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER
     },
 
-    analyzedInstructions: {
+    steps: {
       type: DataTypes.TEXT
     }
 
