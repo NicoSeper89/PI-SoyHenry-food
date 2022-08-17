@@ -21,13 +21,9 @@ module.exports = async (req, res) => {
                             }
                         });
 
-                        console.log(dietsToAdd)
-                        console.log(newRecipe.toJSON())
-                       /*  newRecipe.addDiets(dietsToAdd); */
+        await newRecipe.addDiets(dietsToAdd); 
 
-        
-        
-        return res.json(await Recipe.findAll());
+        return res.send("creado");
 
     } catch (err) {
 

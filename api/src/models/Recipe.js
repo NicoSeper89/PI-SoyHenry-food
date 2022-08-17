@@ -6,13 +6,9 @@ module.exports = (sequelize) => {
   sequelize.define('Recipe', {
 
     id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      get() {
-        const value = this.getDataValue('id');
-        return `_Db${value}` ;
-      }
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
 
     name: {
