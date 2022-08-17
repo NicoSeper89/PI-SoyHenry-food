@@ -6,31 +6,38 @@ module.exports = (sequelize) => {
   sequelize.define('Recipe', {
 
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      get() {
+        const value = this.getDataValue('id');
+        return `_Db${value}` ;
+      }
     },
 
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
 
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: "https://thumbs.dreamstime.com/b/signo-de-interrogaci%C3%B3n-hecho-de-guisantes-en-la-placa-32369130.jpg"
     },
 
     summary: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false
     },
 
     healthScore: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
 
     steps: {
-      type: DataTypes.TEXT
+      type: DataTypes.JSON
     }
 
   },
