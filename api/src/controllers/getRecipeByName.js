@@ -46,13 +46,11 @@ module.exports = async (req, res) => {
                                                           through: {attributes: []}}
         })
 
-        // recipesDB[0].diets[0] = recipesDB[0].diets[0].name
+        recipesDB = recipesDB.map(recipe => {recipe = recipe.toJSON();
+                                             recipe.diets = recipe.diets.map(diet => diet.name);
+                                             return recipe});
 
-        // recipesDB.forEach((recipe) => {recipe.diets = recipe.diets.map((diet) => diet.name);
-        //                                return recipe;
-        // })
-
-
+     
         const recipesAll = [].concat(recipesDB);
 
         return (recipesAll.length)? res.json(recipesAll) : res.send(`No se encontro ninguna recetea con la palabra ${name} en su nombre`);  
