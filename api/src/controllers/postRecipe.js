@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
         await newRecipe.addDiets(dietsToAdd); 
 
-        return res.send("creado");
+        return res.send(newRecipe);
 
     } catch (err) {
 
