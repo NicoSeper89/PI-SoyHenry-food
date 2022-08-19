@@ -4,7 +4,6 @@ const fetch = require('node-fetch');
 const { Recipe, Diet } = require(`../db.js`);
 const { Op } = require("sequelize");
 
-
 const reduceObjectsRecipes = (r) => {
     return {
         id: r.id,
@@ -33,14 +32,15 @@ const getRecipeByName = async (req, res) => {
 
         const { name } = req.query
 
-        if (!name) throw new Error("Error: falto parametro"); //Error si la solicitud no tiene la query "name"
+        if (!name) return res.status(404).send("falto parametro"); //Error si la solicitud no tiene la query "name"
 
         // Busca 100 recetas en la API 
-        const { results } = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-            .then(response => response.json());
+        const { results } = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`)
+                                  .then(response => response.json());
 
         //Filtra las recetas a solo las que tengan el valor de la query "name" incluida en su titulo       
-        let recipesApi = results.filter(recipe => recipe.title.toLowerCase().includes(name));
+        let recipesApi = results.filter(recipe => {const titleArr = recipe.title.toLowerCase().split(" ");
+                                                    return titleArr.includes(name.toLowerCase())});
 
         //Objeto de cada receta solo con las propiedades necesarias
         recipesApi = recipesApi.map((recipe) => reduceObjectsRecipes(recipe))
@@ -55,6 +55,9 @@ const getRecipeByName = async (req, res) => {
                 through: { attributes: [] }
             }
         })
+
+        recipesDB = recipesDB.filter(recipe => {const nameArr = recipe.name.toLowerCase().split(" ");
+                                                return nameArr.includes(name.toLowerCase());})
 
         recipesDB = recipesDB.map(recipe => modifyDietAttributes(recipe));
 
@@ -73,22 +76,20 @@ const getRecipeById = async (req, res) => {
 
     const { id } = req.params;
 
-    console.log(typeof id)
-
     try {
 
-        if (id === undefined) return res.send("no hay ID");
+        if (id === undefined) return res.status(404).send("no hay ID");
 
         if (!id.includes("-")) {
 
             const recipeApi = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
                                  .then(response => response.json());
-
-            return res.json(reduceObjectsRecipes(recipeApi));
+            
+            if (recipeApi.hasOwnProperty('id')) return res.json(reduceObjectsRecipes(recipeApi));
 
         } else {
 
-            let recipeDB = await Recipe.findByPk(id,{
+            const recipeDB = await Recipe.findByPk(id,{
                                                     include: {
                                                         model: Diet,
                                                         as: "diets",
@@ -96,8 +97,12 @@ const getRecipeById = async (req, res) => {
                                                         through: { attributes: [] }
                                                     }
                                                 });
-            return res.json(modifyDietAttributes(recipeDB))
+
+            return res.json(modifyDietAttributes(recipeDB));
+
         }
+
+        return res.status(404).send("No se encontro receta")        
 
     } catch (err) {
         return res.status(404).json(err)

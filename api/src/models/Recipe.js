@@ -14,12 +14,14 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
+      validate: {notEmpty: true}
     },
 
     image: {
       type: DataTypes.STRING,
-      defaultValue: "https://thumbs.dreamstime.com/b/signo-de-interrogaci%C3%B3n-hecho-de-guisantes-en-la-placa-32369130.jpg"
+      defaultValue: "https://thumbs.dreamstime.com/b/signo-de-interrogaci%C3%B3n-hecho-de-guisantes-en-la-placa-32369130.jpg",
+      validate: {isUrl: true}
     },
 
     summary: {
@@ -29,11 +31,14 @@ module.exports = (sequelize) => {
 
     healthScore: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0,
+      validate: {min: 0, max: 100}
     },
 
     steps: {
-      type: DataTypes.JSON
+      type: DataTypes.JSON,
+      defaultValue: {}
     }
 
   },

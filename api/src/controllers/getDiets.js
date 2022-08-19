@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     } 
     catch (err) {
 
-        return res.json(err.message)
+        return res.json(err)
     
     }
 }
