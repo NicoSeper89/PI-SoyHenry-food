@@ -1,9 +1,13 @@
-import './App.css';
+import React from 'react';
+import {Route} from 'react-router-dom';
+import Homepage from './components/Homepage/Homepage.jsx'
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Food</h1>
+      <Route exact path="/">
+        <Homepage />
+      </Route>
     </div>
   );
 }

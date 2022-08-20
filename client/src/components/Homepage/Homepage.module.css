@@ -1,0 +1,8 @@
+.homepageContainers {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: red;
+    height:100vh;
+}
