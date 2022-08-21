@@ -1,8 +1,18 @@
-.homepageContainers {
+.background {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    height:100vh;
+    background-image: url("https://m.media-amazon.com/images/I/81mYuxbNKVL._AC_SL1240_.jpg");
+    background-position: center;
+    background-size: contain;
+}
+
+.lineWhite {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    background-color: red;
-    height:100vh;
+    background-color: white;
 }
