@@ -3,16 +3,45 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
     height:100vh;
-    background-image: url("https://m.media-amazon.com/images/I/81mYuxbNKVL._AC_SL1240_.jpg");
-    background-position: center;
-    background-size: contain;
+    background-image: url("https://i.pinimg.com/originals/26/95/f8/2695f857fb30701da277943d5f166c75.jpg");
+    background-position: top center;
+    background-size:cover;
 }
 
-.lineWhite {
+.card {
+    position: relative;
+    display: flex;
+    width: 50%;
+    min-height: 500px;
+    background: rgb(236, 236, 236);
+    box-shadow: rgb(65, 65, 65) 3px 2px 2px;
+}
+
+.card > div:nth-child(1) {
+    background: url("https://www.hoteldonandres.com/wp-content/uploads/2016/10/blackboard.jpg");
+    background-size:cover;
+}
+
+.card > div:nth-child(2) {
+    background: white;
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    justify-content: space-evenly;
+
+}
+
+.card > div {
+    width:50%;
+}
+
+.socialDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.socialDiv img {
+    width: 1.5em;
 }
