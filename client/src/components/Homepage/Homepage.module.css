@@ -13,13 +13,36 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    width: 35em;
+    width: 25em;
     min-height: 23em;
-    box-shadow: rgba(189, 189, 189, 0.712) 0px 0px 500px 54px;
+    padding: 2em;
+    border: 4px solid rgb(255, 255, 255);
+    box-shadow: rgba(189, 189, 189, 0.712) 0px 0px 500px 54px, rgb(255, 242, 230) 0px 0px 15px 10px;
     background: url("https://www.hoteldonandres.com/wp-content/uploads/2016/10/blackboard.jpg");
     background-size: cover;
+}
+
+.card > img {
+    width: 20em;
+    opacity: 0.8;
+}
+
+.button > button {
+    position: relative;
+    border: rgb(255, 255, 255) solid 0.25em;
+    color: rgb(255, 255, 255);
+    font-family: system-ui;
+    font-weight: 500;
+    padding: 1em 1.5em;
+    background: none;
+    opacity: 0.8;
+}
+
+.button > button:hover {
+    scale: 1.2;
+    border-radius: 12% / 22%;
 }
 
 .socialDiv {
@@ -39,8 +62,13 @@
     align-items: center;
     gap: 0.2em;
 }
+.socialDiv>a:hover{
+    scale: 1.1;
+}
 
 .socialDiv>a:link {
     text-decoration: none;
-    color: rgb(189, 189, 189)
+    color: rgb(189, 189, 189);
+    font-weight: bolder;
+    font-size: large;
 }

@@ -1,0 +1,10 @@
+.principal {
+    color:white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    background: url("https://i.pinimg.com/originals/26/95/f8/2695f857fb30701da277943d5f166c75.jpg") top no-repeat;
+    background-size:cover;
+}
