@@ -1,0 +1,8 @@
+.header {
+    background: rgb(49, 49, 49);
+    height: 6em;
+    margin: 1em 0em;
+    border: rgb(206, 206, 206) solid;
+    border-width: 2px 0px;
+    box-shadow: rgb(255, 255, 255) 0px 0px 20px 3px;
+}

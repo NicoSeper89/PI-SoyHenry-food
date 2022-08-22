@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import Homepage from './components/Homepage/Homepage.jsx';
-import Principal from './components/Pricipal/Principal.jsx'
+import Principal from './components/Principal/Principal.jsx'
 
 function App() {
   return (
