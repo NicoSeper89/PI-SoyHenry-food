@@ -3,45 +3,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height:100vh;
-    background-image: url("https://i.pinimg.com/originals/26/95/f8/2695f857fb30701da277943d5f166c75.jpg");
+    height: 100vh;
+    background: url("https://i.pinimg.com/originals/26/95/f8/2695f857fb30701da277943d5f166c75.jpg");
     background-position: top center;
-    background-size:cover;
+    background-size: cover;
 }
 
 .card {
     position: relative;
     display: flex;
-    width: 50%;
-    min-height: 500px;
-    background: rgb(236, 236, 236);
-    box-shadow: rgb(65, 65, 65) 3px 2px 2px;
-}
-
-.card > div:nth-child(1) {
-    background: url("https://www.hoteldonandres.com/wp-content/uploads/2016/10/blackboard.jpg");
-    background-size:cover;
-}
-
-.card > div:nth-child(2) {
-    background: white;
-    position: relative;
-    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
-}
-
-.card > div {
-    width:50%;
+    align-items: center;
+    width: 35em;
+    min-height: 23em;
+    box-shadow: rgba(189, 189, 189, 0.712) 0px 0px 500px 54px;
+    background: url("https://www.hoteldonandres.com/wp-content/uploads/2016/10/blackboard.jpg");
+    background-size: cover;
 }
 
 .socialDiv {
     display: flex;
     justify-content: center;
+    gap: 0.7em;
     align-items: center;
+    opacity: 0.8;
 }
 
 .socialDiv img {
-    width: 1.5em;
+    width: 2em;
+}
+
+.socialDiv>a {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+}
+
+.socialDiv>a:link {
+    text-decoration: none;
+    color: rgb(189, 189, 189)
 }
