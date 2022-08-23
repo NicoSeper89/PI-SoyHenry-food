@@ -1,0 +1,10 @@
+.paginate {
+    position: relative;
+    display: flex;
+    gap: 2em;
+    justify-content:flex-start;
+    padding: 1%;
+    background-color: rgba(121, 121, 121, 0.315);
+    min-height: 30em;
+    width: 98%;
+}

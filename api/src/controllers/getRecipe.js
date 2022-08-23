@@ -12,9 +12,9 @@ const reduceObjectsRecipes = (r) => {
         summary: r.summary,
         healthScore: r.healthScore,
         steps: r.analyzedInstructions[0] ? r.analyzedInstructions[0].steps.reduce((obj, s) => {
-                obj[s.number] = s.step
-                return obj
-            }, {}) :
+            obj[s.number] = s.step
+            return obj
+        }, {}) :
             {},
         diets: r.diets
     }
@@ -32,22 +32,25 @@ const getRecipeByName = async (req, res) => {
 
         const { name } = req.query
 
-        if (!name) return res.status(404).send("falto parametro"); //Error si la solicitud no tiene la query "name"
-
         // Busca 100 recetas en la API 
         const { results } = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`)
-                                  .then(response => response.json());
+            .then(response => response.json());
 
         //Filtra las recetas a solo las que tengan el valor de la query "name" incluida en su titulo       
-        let recipesApi = results.filter(recipe => {const titleArr = recipe.title.toLowerCase().split(" ");
-                                                    return titleArr.includes(name.toLowerCase())});
+        let recipesApi = name? results.filter(recipe => {
+            const titleArr = recipe.title.toLowerCase().split(" ");
+            return titleArr.includes(name.toLowerCase())
+        }) : results;
 
         //Objeto de cada receta solo con las propiedades necesarias
         recipesApi = recipesApi.map((recipe) => reduceObjectsRecipes(recipe))
 
         let recipesDB = await Recipe.findAll({
-            where: { name: {
-                    [Op.substring]: name } },
+            where: name? {
+                name: {
+                    [Op.substring]: name
+                }
+            } : {},
             include: {
                 model: Diet,
                 as: "diets",
@@ -56,14 +59,18 @@ const getRecipeByName = async (req, res) => {
             }
         })
 
-        recipesDB = recipesDB.filter(recipe => {const nameArr = recipe.name.toLowerCase().split(" ");
-                                                return nameArr.includes(name.toLowerCase());})
+        if (name) recipesDB = recipesDB.filter(recipe => {
+            const nameArr = recipe.name.toLowerCase().split(" ");
+            return nameArr.includes(name.toLowerCase());
+        })
 
         recipesDB = recipesDB.map(recipe => modifyDietAttributes(recipe));
 
         const recipesAll = recipesApi.concat(recipesDB);
 
         return (recipesAll.length) ? res.json(recipesAll) : res.send(`No se encontro ninguna recetea con la palabra ${name} en su nombre`);
+
+
 
     } catch (err) {
 
@@ -83,26 +90,26 @@ const getRecipeById = async (req, res) => {
         if (!id.includes("-")) {
 
             const recipeApi = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
-                                 .then(response => response.json());
-            
+                .then(response => response.json());
+
             if (recipeApi.hasOwnProperty('id')) return res.json(reduceObjectsRecipes(recipeApi));
 
         } else {
 
-            const recipeDB = await Recipe.findByPk(id,{
-                                                    include: {
-                                                        model: Diet,
-                                                        as: "diets",
-                                                        attributes: ["name"],
-                                                        through: { attributes: [] }
-                                                    }
-                                                });
+            const recipeDB = await Recipe.findByPk(id, {
+                include: {
+                    model: Diet,
+                    as: "diets",
+                    attributes: ["name"],
+                    through: { attributes: [] }
+                }
+            });
 
             return res.json(modifyDietAttributes(recipeDB));
 
         }
 
-        return res.status(404).send("No se encontro receta")        
+        return res.status(404).send("No se encontro receta")
 
     } catch (err) {
         return res.status(404).json(err)

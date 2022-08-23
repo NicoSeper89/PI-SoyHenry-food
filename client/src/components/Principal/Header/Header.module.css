@@ -1,8 +1,31 @@
 .header {
-    background: rgb(49, 49, 49);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background: url("https://www.textures.com/system/gallery/photos/Wood/Fine%20Wood/122376/WoodFine0085_2_350.jpg");
+    background-position: center;
     height: 6em;
-    margin: 1em 0em;
-    border: rgb(206, 206, 206) solid;
-    border-width: 2px 0px;
-    box-shadow: rgb(255, 255, 255) 0px 0px 20px 3px;
+    width: 98%;
+    margin: 0.5em 0em 0em 0em;
+    box-shadow: rgb(117, 117, 117) 0px 0px 20px 3px;
+}
+
+.logo {
+    width: 8em;
+}
+
+.search {
+    display: flex;
+    gap: 1em;
+    height: 2em;
+}
+
+.search > input:nth-child(1) {
+    border: none;
+    outline: none;
+}
+.search > input:nth-child(2) {
+    border: none;
+    padding: 0em 1em;
 }
