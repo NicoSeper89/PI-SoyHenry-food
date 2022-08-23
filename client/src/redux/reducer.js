@@ -1,6 +1,8 @@
 const initialState = {
     loading: true,
-    allRecipes: []
+    allRecipes: [],
+    countRecipes: 0,
+    page: 1
 }
 
 const rootReducer = (state = initialState, actions) => {
@@ -10,7 +12,8 @@ const rootReducer = (state = initialState, actions) => {
             return {
                 ...state,
                 loading: false,
-                allRecipes: actions.payload
+                allRecipes: actions.payload,
+                countRecipes: actions.payload.length
             }
 
         default: return { ...state };
