@@ -1,4 +1,4 @@
 .side {
-    width: 15em;
+    min-width: 15rem;
     background-color: rgb(62, 110, 69);
 }

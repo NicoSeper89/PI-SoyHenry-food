@@ -1,13 +1,20 @@
 import React, {Component} from "react";
+import style from './Card.module.css';
 
 class Card extends Component {
 
     render(){
 
-        const {name, image/* , diets */} = this.props;
+        const {name, image, id, diets} = this.props;
 
         return(
-            <><img src={image} alt={name} /></>
+            <div className={style.card}>
+                <img src={image} alt={`${id}Img`} />
+                <h3>{name}</h3>
+                <div className={style.dietsConteiner}>
+                    {diets.map(diet => <span>{diet}</span>)}
+                </div>
+            </div>
         )
     }
 }

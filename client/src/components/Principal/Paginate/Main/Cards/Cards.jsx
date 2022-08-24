@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from 'react-redux';
 import Card from './Card.jsx';
+import style from './Cards.module.css';
 
 const Cards = ({allRecipes, page}) => {
     
     return (
-        <div>
+        <div className={style.cards}>
         {
           allRecipes.slice((page - 1)*9, page*9 )
 

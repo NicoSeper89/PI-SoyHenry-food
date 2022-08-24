@@ -2,7 +2,7 @@ const initialState = {
     loading: true,
     allRecipes: [],
     countRecipes: 0,
-    page: "1"
+    page: 1
 }
 
 const rootReducer = (state = initialState, actions) => {
@@ -18,7 +18,7 @@ const rootReducer = (state = initialState, actions) => {
         case 'PREVIOUS_PAGE':
             return {
                 ...state,
-                page: --state.page
+                page: state.page - 1
             }
         case 'CHANGE_PAGE':
             return {
@@ -28,7 +28,7 @@ const rootReducer = (state = initialState, actions) => {
         case 'NEXT_PAGE':
             return {
                 ...state,
-                page: ++state.page
+                page: state.page + 1
             }
 
         default: return { ...state };

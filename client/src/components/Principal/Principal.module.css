@@ -6,6 +6,5 @@
     align-items: center;
     gap: 1em;
     min-height: 100vh;
-    background: url("https://i.pinimg.com/originals/26/95/f8/2695f857fb30701da277943d5f166c75.jpg") top no-repeat;
-    background-size:cover;
+    background: linear-gradient(70deg, #c9ccd1 0%,#000000 20%);
 }

@@ -19,8 +19,9 @@ export default function Button({name}) {
             return (page === (Math.ceil(countRecipes/9)))? null : dispatch(nextPage());
 
         }
-        else if (page !== e.target.name) {
-            return dispatch(changePage(e.target.name));
+        else if (page !== parseInt(e.target.name)) {
+
+            return dispatch(changePage(parseInt(e.target.name)));
         }
        
     } 
@@ -30,3 +31,4 @@ export default function Button({name}) {
     )
 
 }
+
