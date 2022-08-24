@@ -14,6 +14,9 @@ class Side extends Component {
                     <button>+ Points</button>
                     <button>- Points</button>
                 </div>
+                <label>
+                    <input type="checkbox" id="cbox1" value="first_checkbox" checked={false}/> 
+                </label>
                 
             </div>
         )

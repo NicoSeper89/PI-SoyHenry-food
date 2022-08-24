@@ -3,14 +3,14 @@ import {Route} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import Homepage from './components/Homepage/Homepage.jsx';
 import Principal from './components/Principal/Principal.jsx';
-import {callToBackend} from './redux/actions.js';
+import {getRecipesBackend} from './redux/actions.js';
 
 function App() {
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(callToBackend())
+    dispatch(getRecipesBackend())
   })
 
   return (
