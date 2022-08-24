@@ -7,6 +7,25 @@ export function getAllRecipes(recipes) {
     }
 }
 
+export function previousPage() {
+    return {
+        type: "PREVIOUS_PAGE"
+    }
+}
+
+export function changePage(n) {
+    return {
+        type: "CHANGE_PAGE",
+        payload: n
+    }
+}
+
+export function nextPage() {
+    return {
+        type: "NEXT_PAGE"
+    }
+}
+
 export function callToBackend() {
     return (dispatch) => {
         fetch('http://localhost:3001/recipes')

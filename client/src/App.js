@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     dispatch(callToBackend())
-  }, [dispatch])
+  })
 
   return (
     <div className="App">

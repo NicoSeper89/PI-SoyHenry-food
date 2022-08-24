@@ -1,30 +1,30 @@
 import React from "react";
-import { useEffect } from "react";
 import {useSelector} from 'react-redux';
+import Button from './Button.jsx';
 
 const Buttons = () => {
     
     const {countRecipes} = useSelector((state) => state);
 
-    useEffect(() => {
+    const impBotton = (n) => {
 
-        for(let i = 1 ; i <= Math.ceil(countRecipes/9) ; i++ ) {
-            // arrButton.push(<button>{i}</button>)
+        const arrButtons = [];
+
+        for (let i = 1; i <= n; i++) {
+            arrButtons.push(<Button key={i} name={i} />)
         }
 
-    }, [countRecipes])
-
-
-    const onClickButton = (e) => {
-        e.preventDefault();
-    
+        return arrButtons
     }
 
     return (
-        <>
-          <button onClick={onClickButton}>{"<"}</button>
-          <button onClick={onClickButton}>{">"}</button>
-        </>
+        <div>
+          <Button name={"<"} >{"<"}</Button>
+
+          {impBotton(Math.ceil(countRecipes/9))}
+
+          <Button name={">"} >{">"}</Button>
+        </div>
     )
 }
 

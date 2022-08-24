@@ -33,7 +33,7 @@ const getRecipeByName = async (req, res) => {
         const { name } = req.query
 
         // Busca 100 recetas en la API 
-        const { results } = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=10`)
+        const { results } = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             .then(response => response.json());
 
         //Filtra las recetas a solo las que tengan el valor de la query "name" incluida en su titulo       
