@@ -33,6 +33,13 @@ export function nextPage() {
     }
 }
 
+export function order(info) {
+    return {
+        type: "ORDER",
+        payload: info
+    }
+}
+
 export function getRecipesBackend() {
     return (dispatch) => {
         fetch('http://localhost:3001/recipes')

@@ -12,7 +12,7 @@ class Card extends Component {
                 <img src={image} alt={`${id}Img`} />
                 <h3>{name}</h3>
                 <div className={style.dietsConteiner}>
-                    {diets.map(diet => <span>{diet}</span>)}
+                    {diets.map(diet => <span key={diet}>{diet}</span>)}
                 </div>
             </div>
         )

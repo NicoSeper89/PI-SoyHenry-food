@@ -36,6 +36,16 @@ const rootReducer = (state = initialState, actions) => {
                 ...state,
                 page: state.page + 1
             }
+        case 'ORDER': 
+
+            const {typeOrder, asc} = actions.payload;    
+
+            return {
+                ...state,
+                allRecipes: asc? state.allRecipes.sort((a, b) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice(): 
+                                 state.allRecipes.sort((b, a) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice(),
+                page: 1
+            }
 
         default: return { ...state };
     }

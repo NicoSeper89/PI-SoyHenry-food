@@ -1,26 +1,30 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import style from './Side.module.css';
+import {order} from '../../../../redux/actions';
 
 class Side extends Component {
 
     render() {
+
+        const {dispatch} = this.props;
+
         return (
             <div className={style.side}>
                 <div>
-                    <button>AZ</button>
-                    <button>ZA</button>
+                    <button onClick={(e) => dispatch(order({typeOrder: "name", asc: true}))}>AZ</button>
+                    <button onClick={(e) => dispatch(order({typeOrder: "name", asc: false}))}>ZA</button>
                 </div>
                 <div>
-                    <button>+ Points</button>
-                    <button>- Points</button>
+                    <button onClick={(e) => dispatch(order({typeOrder: "healthScore", asc: true}))}>+ Points</button>
+                    <button onClick={(e) => dispatch(order({typeOrder: "healthScore", asc: false}))}>- Points</button>
                 </div>
-                <label>
-                    <input type="checkbox" id="cbox1" value="first_checkbox" checked={false}/> 
-                </label>
-                
             </div>
         )
     }
 }
 
-export default Side;
+
+
+export default connect()(Side);
+
