@@ -2,3 +2,11 @@
     min-width: 15rem;
     background-color: rgb(62, 110, 69);
 }
+
+.diets {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .05em;
+}

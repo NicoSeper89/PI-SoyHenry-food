@@ -5,9 +5,16 @@ import {order} from '../../../../redux/actions';
 
 class Side extends Component {
 
+   /*  constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    } */
+
     render() {
 
-        const {dispatch} = this.props;
+        const {dispatch, allDiets} = this.props;
 
         return (
             <div className={style.side}>
@@ -19,12 +26,21 @@ class Side extends Component {
                     <button onClick={(e) => dispatch(order({typeOrder: "healthScore", asc: true}))}>+ Points</button>
                     <button onClick={(e) => dispatch(order({typeOrder: "healthScore", asc: false}))}>- Points</button>
                 </div>
+                <div className={style.diets}>
+                    {allDiets.map((diet)=> (<label key={diet.id}>
+                                                <input type="checkbox" value={diet.name} /> {diet.name}   
+                                           </label>)
+                                           )}
+                </div>
             </div>
         )
     }
 }
 
+const mapStateToProps = (state) => ({
+    allDiets: state.allDiets
+})
 
 
-export default connect()(Side);
+export default connect(mapStateToProps, null)(Side);
 

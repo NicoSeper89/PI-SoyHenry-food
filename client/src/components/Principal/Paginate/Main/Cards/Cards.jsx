@@ -14,6 +14,7 @@ const Cards = ({allRecipes, page}) => {
                                             id={recipe.id} 
                                             name={recipe.name}
                                             image={recipe.image}
+                                            healthScore={recipe.healthScore}
                                             diets={recipe.diets}
                                             />))
         }
