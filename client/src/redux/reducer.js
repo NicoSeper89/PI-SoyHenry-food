@@ -1,5 +1,6 @@
 const initialState = {
     loading: true,
+    backupRecipes: [],
     allRecipes: [],
     countRecipes: 0,
     allDiets: {},
@@ -12,6 +13,7 @@ const rootReducer = (state = initialState, actions) => {
         case 'GET_ALL_RECIPES':
             return {
                 ...state,
+                backupRecipes: actions.payload,
                 allRecipes: actions.payload,
                 countRecipes: actions.payload.length
             }
@@ -45,6 +47,12 @@ const rootReducer = (state = initialState, actions) => {
                 allRecipes: asc? state.allRecipes.sort((a, b) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice(): 
                                  state.allRecipes.sort((b, a) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice()
             }
+
+       /*  case 'FILTER': 
+
+            return {...state,
+                    allRecipes: state.backupRecipes.filter((recipe) => actions.payload.some(diet => actions.payload.include(diet) ))
+                    } */
 
         default: return { ...state };
     }
