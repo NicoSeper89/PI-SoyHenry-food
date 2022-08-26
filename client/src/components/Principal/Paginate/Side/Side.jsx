@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import style from './Side.module.css';
-import { order } from '../../../../redux/actions';
+import { order, filterByDiets, resetRecipes } from '../../../../redux/actions';
 
 class Side extends Component {
 
@@ -17,7 +17,10 @@ class Side extends Component {
 
     componentDidUpdate({dispatch}) {
 
-       /*  return (this.state.markedDiets.length === 0)? dispatch() : dispatch(); */
+        
+        return (this.state.markedDiets.length !== 0)? 
+                                dispatch(filterByDiets(this.state.markedDiets)) : 
+                                dispatch(resetRecipes());
 
     }
 

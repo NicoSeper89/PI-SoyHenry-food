@@ -13,7 +13,7 @@ const rootReducer = (state = initialState, actions) => {
         case 'GET_ALL_RECIPES':
             return {
                 ...state,
-                backupRecipes: actions.payload,
+                backupRecipes: [...actions.payload],
                 allRecipes: actions.payload,
                 countRecipes: actions.payload.length
             }
@@ -38,21 +38,35 @@ const rootReducer = (state = initialState, actions) => {
                 ...state,
                 page: state.page + 1
             }
-        case 'ORDER': 
+        case 'ORDER':
 
-            const {typeOrder, asc} = actions.payload;    
+            const { typeOrder, asc } = actions.payload;
 
             return {
                 ...state,
-                allRecipes: asc? state.allRecipes.sort((a, b) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice(): 
-                                 state.allRecipes.sort((b, a) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice()
+                allRecipes: asc ? state.allRecipes.sort((a, b) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice() :
+                    state.allRecipes.sort((b, a) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice()
             }
 
-       /*  case 'FILTER': 
+        case 'FILTER_BY_DIETS':
 
-            return {...state,
-                    allRecipes: state.backupRecipes.filter((recipe) => actions.payload.some(diet => actions.payload.include(diet) ))
-                    } */
+            const filteredRecipes = state.backupRecipes.filter(recipe => !actions.payload.some(d => !recipe.diets.includes(d)))
+
+            return {
+                ...state,
+                allRecipes: filteredRecipes,
+                countRecipes: filteredRecipes.length,
+                page: 1
+            }
+
+        case 'RESET_RECIPES':
+
+            return {
+                ...state,
+                allRecipes: [...state.backupRecipes],
+                countRecipes: [...state.backupRecipes].length,
+                page: 1
+            }
 
         default: return { ...state };
     }

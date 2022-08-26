@@ -10,8 +10,8 @@ class Card extends Component {
         return(
             <div className={style.card}>
                 <img src={image} alt={`${id}Img`} />
-                <h2>{name}</h2>
-                <h3>{healthScore}</h3>
+                <h2 style={{margin: 0}}>{name}</h2>
+                <h3 style={{margin: 0}}>{healthScore}</h3>
                 <div className={style.dietsConteiner}>
                     {diets.map(diet => <span key={diet}>{diet}</span>)}
                 </div>

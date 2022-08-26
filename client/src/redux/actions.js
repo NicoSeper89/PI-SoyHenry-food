@@ -39,6 +39,17 @@ export function order(info) {
         payload: info
     }
 }
+export function filterByDiets(arrDiets) {
+    return {
+        type: "FILTER_BY_DIETS",
+        payload: arrDiets
+    }
+}
+export function resetRecipes() {
+    return {
+        type: "RESET_RECIPES"
+    }
+}
 
 export function getRecipesBackend() {
     return (dispatch) => {

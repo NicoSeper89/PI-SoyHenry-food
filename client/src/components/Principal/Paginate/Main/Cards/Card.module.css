@@ -1,11 +1,13 @@
 .card {
     display: flex;
     flex-direction: column;
-    justify-content:space-evenly;
+    justify-content:flex-start;
     align-items: center;
+    gap: .4em;
     background-color: grey;
     width: 20em;
-    height: 23em;
+    height: 25em;
+    padding: .6em 0em;
 }
 
 .card > img {
