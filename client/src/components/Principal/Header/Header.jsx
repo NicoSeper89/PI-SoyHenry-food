@@ -11,7 +11,9 @@ class Header extends Component {
                     <img className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
                 </NavLink>
                 <form className={style.search}><input type="text" /><input type="submit" /></form>
-                <button >Crear Receta</button>
+                <NavLink to="/create">
+                    <button >Crear Receta</button>
+                </NavLink>
             </div>
         )
     }

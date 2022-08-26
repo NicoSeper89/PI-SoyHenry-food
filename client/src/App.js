@@ -18,7 +18,7 @@ function App() {
       <Route exact path="/">
         <Homepage />
       </Route>
-      <Route path="/recipes">
+      <Route path="/">
         <Principal />
       </Route>
     </div>

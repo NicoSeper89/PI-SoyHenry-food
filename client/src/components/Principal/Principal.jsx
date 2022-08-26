@@ -4,6 +4,7 @@ import Footer from './Footer/Footer.jsx';
 import Header from './Header/Header.jsx';
 import Paginate from './Paginate/Paginate.jsx';
 import Details from './Details/Details.jsx';
+import Create from './Create/Create.jsx';
 import style from './Principal.module.css';
 import { useSelector } from 'react-redux';
 
@@ -21,7 +22,7 @@ export default function Principal() {
 
       <Route exact path={`/recipes/:id`} render={({match}) =>  <Details id={match.params.id} />}/>
 
-
+      <Route exact path={`/create`} render={() =>  <Create />}/>
 
       <Footer />
     </div>
