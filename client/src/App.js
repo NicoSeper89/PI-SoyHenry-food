@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getRecipesBackend())
-  })
+  }, [dispatch])
 
   return (
     <div className="App">

@@ -1,0 +1,19 @@
+.carddetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5em;
+    padding: 1em;
+    background-color: red;
+
+}
+
+.steps {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .3em;
+
+}
