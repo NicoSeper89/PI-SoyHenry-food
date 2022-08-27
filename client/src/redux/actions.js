@@ -53,11 +53,13 @@ export function resetRecipes() {
 
 export function getRecipesBackend() {
     return (dispatch) => {
-        fetch('http://localhost:3001/recipes')
+        fetch('http://localhost:3001/recipe')
         .then(response => response.json()) 
         .then(data => {dispatch(getAllRecipes(data));
                        dispatch(getDietsBackend())})   
-        .catch(err => console.log('Solicitud de recetas al backend fallida', err)); 
+        .catch(err => {dispatch(getAllRecipes([]));
+                       dispatch(getDietsBackend())} 
+            /* console.log('Solicitud de recetas al backend fallida', err) */); 
     }
 }
 

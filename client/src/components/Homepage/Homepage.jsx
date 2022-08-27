@@ -8,8 +8,8 @@ export default function Homepage() {
         <div className={style.background} >
             <div className={style.card}>
                 <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
-                <NavLink className={style.button} to="/recipes">
-                    <button >INGRESAR</button>
+                <NavLink to="/recipes">
+                    <button className={style.button}>INGRESAR</button>
                 </NavLink>
                 <div className={style.socialDiv}>
                     <a href="https://www.googasdasdasdle.com"><img src="https://i.postimg.cc/xThMr2PB/logo-Linkedin.png" alt="github" />LINKEDIN</a>

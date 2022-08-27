@@ -9,20 +9,24 @@ import style from './Principal.module.css';
 import { useSelector } from 'react-redux';
 
 export default function Principal() {
-  
-  const {loading} = useSelector(state => state);
+
+  const { loading } = useSelector(state => state);
 
   return (
     <div className={style.principal}>
 
       <Header />
-      <Route exact path={`/recipes`} render={() => loading? 
-                                                    <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" /> :  
-                                                    <Paginate />}/>
 
-      <Route exact path={`/recipes/:id`} render={({match}) =>  <Details id={match.params.id} />}/>
-
-      <Route exact path={`/create`} render={() =>  <Create />}/>
+      <Route exact path={`/recipes`} render={() => loading ?
+                                        <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" /> :
+                                        <Paginate />} />
+  
+      <Route exact path={`/recipes/:id`}
+                   render={({ match }) => (match.params.id === "create")?
+                                            (loading ? <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" /> : 
+                                                       <Create />) 
+                                            : <Details id={match.params.id}/>
+                            } />
 
       <Footer />
     </div>
