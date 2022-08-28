@@ -60,7 +60,7 @@ export default function Steps(props) {
                         
                     }
                     {
-                        currentSteps[0]? currentSteps.map(([key, value]) => <span key={key}>{key + ": " + value}</span>):
+                        currentSteps[0]? currentSteps.map(([key, value]) => <span key={key}>{key + " - " + value}</span>):
                                          <span>No hay pasos</span>
                     }
                 </div>

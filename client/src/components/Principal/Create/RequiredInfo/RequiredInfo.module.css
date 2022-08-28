@@ -5,29 +5,44 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 0.9rem;
-    width: 25rem;
+    width: 65rem;
 }
 
-.requiredInfo > label {
+.requiredInfo>label {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0.4rem;
 }
 
-.requiredInfo > label > textarea {
+.requiredInfo>label>textarea {
     width: 20rem;
     height: 7rem;
     resize: none;
 }
 
-.requiredInfo > label > textarea,
-.requiredInfo > label > input {
-   outline: none;
-   border: none;
-   padding: .2rem .1rem;
+.requiredInfo>label>textarea,
+.requiredInfo>label>input {
+    outline: none;
+    padding: .2rem .1rem;
+    background-color: rgba(87, 87, 87, 0.9);
 }
 
-.requiredInfo > label:nth-child(4) > input {
+.requiredInfo>label:nth-child(4)>input {
     width: 3rem;
+}
+
+.dato{
+    border: rgb(255, 255, 255) solid 0.01rem;
+    color: white;
+}
+
+.datoError {
+    border: red solid 0.01rem;
+    color: red;
+}
+
+.textError{
+    color: rgb(255, 59, 59);
+    font-size: .9rem;
 }

@@ -13,8 +13,9 @@ export default function ChooseDiets() {
             <div className={style.diets}>
                 {
                     allDiets.map((diet) => (
-                        <label key={diet.id} >
-                            <input key={diet.id}
+                        <label  key={diet.id} >
+                            <input className={style.checkbox}  
+                                key={diet.id}
                                 type="checkbox"
                                 value={diet.name}
                             /*  onChange={typesChangeHandler}
@@ -22,7 +23,6 @@ export default function ChooseDiets() {
                             />{diet.name}
                         </label>))
                 }
-
             </div>
         </div>
     )

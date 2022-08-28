@@ -16,8 +16,8 @@ const Create = () => {
 
     const [validation, setValidation] = useState({
         nameValidation: false,
-        imageValidation: false,
-        healthScoreValidation: false,
+        imageValidation: true,
+        healthScoreValidation: true,
         summaryValidation: false
     });
 
@@ -41,7 +41,7 @@ const Create = () => {
 
             setValidation({
                 ...validation,
-                imageValidation: (/^\s+\s*/.test(e.target.value) || e.target.value === "") ? false : true
+                imageValidation: (/^\s+\s*/.test(e.target.value)) ? false : true
             })
 
         } else {
@@ -98,8 +98,8 @@ const Create = () => {
     return (
         <div className={style.createConteiner}>
 
-            <h2>Crear una nueva receta</h2>
-
+            <h2>CREAR RECETA</h2>
+            <hr />
             <form className={style.form} onSubmit={formSubmit}>
                 <div>
                     <RequiredInfo name={infoForm.name}
@@ -111,7 +111,7 @@ const Create = () => {
 
                     <ChooseDiets />
                 </div>
-
+                <hr />
                 <Steps currentSteps={Object.entries(infoForm.steps)}
                     addStep={addStep}
                     deleteStep={deleteStep}

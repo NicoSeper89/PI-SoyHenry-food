@@ -6,11 +6,28 @@
     align-items: center;
     min-height: 30rem;
     width: 84vw;
-    gap: .7rem;
-    margin: 2.5rem 0rem;
-    padding: 2rem 4vw 3.5rem 4vw;
-    background-color: rgba(204, 204, 204, 0.85);
+    gap: 0.5rem;
+    margin: 1.5rem 0rem 2.5rem 0rem;
+    padding: 2rem 4vw 5rem 4vw;
+    background-color: rgba(56, 56, 56, 0.985);
     border-radius: 7% / 10%;
+    
+}
+
+.createConteiner hr {
+    border-color: rgba(240, 240, 240, 0.818);
+    width: 100%
+}
+
+.createConteiner > h2 {
+    font-size: 2rem;
+    color: rgba(249, 230, 102, 0.818);
+}
+
+.createConteiner h3 {
+    font-size: 1.5rem;
+    color: rgba(249, 230, 102, 0.818);
+    font-weight: 500;
 }
 
 .form {
@@ -21,7 +38,7 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
-    
+    color: rgb(208, 207, 207);
 }
 
 .form > div:nth-child(1){
@@ -30,7 +47,6 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
-    gap: 4rem;
 }
 
 .form > input {
