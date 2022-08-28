@@ -3,7 +3,7 @@ import style from './Steps.module.css';
 
 export default function Steps(props) {
 
-    const { currentSteps, addStep } = props;
+    const { currentSteps, addStep, deleteStep, resetStep} = props;
     const [step, setStep] = useState("");
     const [error, setError] = useState(false);
 
@@ -27,7 +27,7 @@ export default function Steps(props) {
 
         if (!error && step !== "") {
 
-            addStep(e, step);
+            addStep(step);
             setStep("");
 
         }
@@ -46,8 +46,8 @@ export default function Steps(props) {
                     onKeyDown={e => (e.key === "Enter") ? pressAdd(e) : null}
                 />
                 <div>
-                    <button >Reset</button>
-                    <button >Borrar Ultima</button>
+                    <button onClick={resetStep}>Reset</button>
+                    <button onClick={deleteStep}>Borrar Ultima</button>
                     <button onClick={pressAdd}>Agregar</button>
                 </div>
 

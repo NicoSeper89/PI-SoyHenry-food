@@ -14,6 +14,12 @@ const Create = () => {
         steps: {}
     });
 
+    const [validation, setValidation] = useState({
+        nameValidation: false,
+        imageValidation: false,
+        healthScoreValidation: false,
+        summaryValidation: false
+    });
 
     // const [enabledSubmit, setEnabledSubmit] = useState(false);
 
@@ -23,11 +29,34 @@ const Create = () => {
             ...infoForm,
             [e.target.name]: e.target.value
         })
+
+        if (e.target.name === "healthScore") {
+
+            setValidation({
+                ...validation,
+                healthScoreValidation: (e.target.value < 0 || e.target.value > 100) ? false : true
+            })
+
+        } else if (e.target.name === "image") {
+
+            setValidation({
+                ...validation,
+                imageValidation: (/^\s+\s*/.test(e.target.value) || e.target.value === "") ? false : true
+            })
+
+        } else {
+
+            setValidation({
+                ...validation,
+                [`${e.target.name}Validation`]: (/^\s+\s*/.test(e.target.value) || e.target.value === "") ? false : true
+            })
+        }
+
     }
 
-    const addStep = (e, step) => {
-        
-        const newSteps = {...infoForm.steps, [`${Object.keys(infoForm.steps).length + 1}`]: step} 
+    const addStep = (step) => {
+
+        const newSteps = { ...infoForm.steps, [`${Object.keys(infoForm.steps).length + 1}`]: step }
 
         setInfoForm({
             ...infoForm,
@@ -36,17 +65,33 @@ const Create = () => {
 
     }
 
-    const deleteStep = (e, step) => {
-        
-        
+    const deleteStep = () => {
+
+        const copyArr = Object.entries(infoForm.steps);
+        const newSteps = {};
+
+        copyArr.forEach(([key, value]) => (parseInt(key) === (copyArr.length)) ? null : newSteps[key] = value)
+
+        setInfoForm({
+            ...infoForm,
+            steps: newSteps
+        })
+
+    }
+
+    const resetStep = () => {
+
+        setInfoForm({
+            ...infoForm,
+            steps: {}
+        })
 
     }
 
     function formSubmit(e) {
 
         e.preventDefault();
-
-        console.log(e);
+        console.log(infoForm);
 
     }
 
@@ -61,21 +106,22 @@ const Create = () => {
                         image={infoForm.image}
                         healthScore={infoForm.healthScore}
                         summary={infoForm.summary}
-                        changeHandler={changeHandler} />
+                        changeHandler={changeHandler}
+                        validation={validation}/>
 
                     <ChooseDiets />
                 </div>
 
-                <Steps  currentSteps={Object.entries(infoForm.steps)}
-                        addStep={addStep}
-                        deleteStep={deleteStep}  />
+                <Steps currentSteps={Object.entries(infoForm.steps)}
+                    addStep={addStep}
+                    deleteStep={deleteStep}
+                    resetStep={resetStep} />
 
                 <input value="Enviar" type="submit" />
             </form>
         </div>
 
     )
-
 }
 
 export default Create;
