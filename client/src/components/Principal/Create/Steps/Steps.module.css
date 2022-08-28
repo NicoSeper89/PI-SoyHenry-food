@@ -1,0 +1,91 @@
+.stepsConteiner {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    gap: 4rem;
+}
+
+.stepsConteiner>label {
+    display: flex;
+    position: relative;
+    width: 25rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .51rem;
+}
+
+
+.stepsConteiner>label>textarea {
+    width: 20rem;
+    height: 10rem;
+    padding: 0.2rem 0.1rem;
+    resize: none;
+    outline: none;
+}
+
+.textarea {
+    border: rgba(255, 0, 0, 0) solid 0.1rem;
+}
+
+.textareaError {
+    border: red solid 0.1rem;
+}
+
+.stepsConteiner>label>div {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 20.4rem;
+}
+
+.stepsConteiner>label>div>button {
+    width: 6.5rem;
+    padding: 0.2rem .9rem;
+    border: none;
+    color: rgb(210, 210, 210);
+    background-color: rgb(71, 71, 71);
+}
+
+.stepsConteiner>label>div>button:active {
+    scale: 0.9;
+}
+
+.currentSteps {
+    display: flex;
+    width:inherit;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.currentSteps > div {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.3rem;
+    text-align: left;
+}
+
+.currentSteps > div > span {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.textError {
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: normal;
+    color:red
+}
+
+.errorTextarea {
+    border: red solid .1rem;
+}

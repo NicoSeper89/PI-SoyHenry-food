@@ -1,22 +1,45 @@
 import React, { useState } from "react";
-import {useSelector} from 'react-redux';
+import RequiredInfo from "./RequiredInfo/RequiredInfo";
+import ChooseDiets from "./ChooseDiets/ChooseDiets";
+import Steps from "./Steps/Steps";
 import style from './Create.module.css';
 
 const Create = () => {
 
-    const [infoForm, setInfoForm] = useState({name: "",
-                                            image: "",
-                                            healthScore: 0,
-                                            summary: ""
-                                            });
-    
-    const allDiets = useSelector((state) => state.allDiets)
+    const [infoForm, setInfoForm] = useState({
+        name: "",
+        image: "",
+        healthScore: 0,
+        summary: "",
+        steps: {}
+    });
+
+
     // const [enabledSubmit, setEnabledSubmit] = useState(false);
 
     const changeHandler = (e) => {
-        console.log(typeof parseInt(e.target.value))
-        setInfoForm({ ...infoForm, 
-                    [e.target.name]: e.target.value})
+
+        setInfoForm({
+            ...infoForm,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const addStep = (e, step) => {
+        
+        const newSteps = {...infoForm.steps, [`${Object.keys(infoForm.steps).length + 1}`]: step} 
+
+        setInfoForm({
+            ...infoForm,
+            steps: newSteps
+        })
+
+    }
+
+    const deleteStep = (e, step) => {
+        
+        
+
     }
 
     function formSubmit(e) {
@@ -30,62 +53,25 @@ const Create = () => {
     return (
         <div className={style.createConteiner}>
 
-            <h3>Crear una nueva receta</h3>
+            <h2>Crear una nueva receta</h2>
 
             <form className={style.form} onSubmit={formSubmit}>
-
-                <label>Nombre*: <input name={"name"} 
-                                        value={infoForm.name} 
-                                        onChange={changeHandler} 
-                                        type="text"
-                                        autoComplete="off"/>
-                </label>
-
-                <label>Imagen*: <input name={"image"} 
-                                        value={infoForm.image} 
-                                        onChange={changeHandler} 
-                                        type="text" 
-                                        autoComplete="off"/>
-                </label>
-
-                <label>Health Score*: <input name={"healthScore"}  
-                                             value={infoForm.healthScore} 
-                                             onChange={changeHandler} 
-                                             type="number" 
-                                             autoComplete="off"/>
-                </label>
-
-                <label>Descripcion*: <input name={"summary"}  
-                                            value={infoForm.summary} 
-                                            onChange={changeHandler} 
-                                            type="text" 
-                                            autoComplete="off"/>
-                </label>
-
-                <div className={style.diets}>
-                <span>Tipos de dietas</span>
-                {
-                 allDiets.map((diet) => (
-                                        <label key={diet.id} >
-                                            <input key={diet.id}
-                                                type="checkbox"
-                                                value={diet.name}
-                                               /*  onChange={typesChangeHandler}
-                                                disabled={(boxesDisabled && !(t.name === info.types[0] || t.name === info.types[1])) ? true : false} */
-                                            />{diet.name}
-                                        </label>))
-                }
-                </div>
-
                 <div>
-                    
+                    <RequiredInfo name={infoForm.name}
+                        image={infoForm.image}
+                        healthScore={infoForm.healthScore}
+                        summary={infoForm.summary}
+                        changeHandler={changeHandler} />
+
+                    <ChooseDiets />
                 </div>
+
+                <Steps  currentSteps={Object.entries(infoForm.steps)}
+                        addStep={addStep}
+                        deleteStep={deleteStep}  />
 
                 <input value="Enviar" type="submit" />
-                
             </form>
-
-
         </div>
 
     )

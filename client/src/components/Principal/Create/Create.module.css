@@ -1,31 +1,50 @@
 .createConteiner {
-    position: relative;
-    min-height: 30em;
-    width: 85%;
+    position:relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: .7em;
-    padding: 3em 5em;
-    margin: 1em;
+    min-height: 30rem;
+    width: 84vw;
+    gap: .7rem;
+    margin: 2.5rem 0rem;
+    padding: 2rem 4vw 3.5rem 4vw;
     background-color: rgba(204, 204, 204, 0.85);
-    border-radius: 4% / 8%;
+    border-radius: 7% / 10%;
 }
 
 .form {
+    position: relative;
     display: flex;
     width: 100%;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: .6em;
+    gap: 1rem;
+    
 }
 
-.diets {
+.form > div:nth-child(1){
+    position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: .2em;
+    width: 100%;
+    gap: 4rem;
+}
+
+.form > input {
+    position:absolute;
+    padding: 1rem 3rem;
+    bottom: -2rem;
+    right: 3rem;
+    border: none;
+    font-size: 1rem;
+}
+
+.form > input:hover{
+    scale: 1.05;
+}
+.form > input:active{
+    scale: 0.95;
 }

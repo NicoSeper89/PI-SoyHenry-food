@@ -1,0 +1,19 @@
+.dietsConteiner {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .8rem;
+    width: inherit;
+}
+
+.diets {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: .2em;
+    font-size: 1.2rem;
+}

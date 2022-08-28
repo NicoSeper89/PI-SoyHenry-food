@@ -7,7 +7,6 @@ class Side extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             markedDiets: []
         }
@@ -16,7 +15,6 @@ class Side extends Component {
     }
 
     componentDidUpdate({dispatch}) {
-
         
         return (this.state.markedDiets.length !== 0)? 
                                 dispatch(filterByDiets(this.state.markedDiets)) : 
@@ -43,12 +41,8 @@ class Side extends Component {
                     markedDiets: state.markedDiets.filter(diet => diet !== e.target.value)
                 }
             })
-
         }
-
     }
-
-
 
     render() {
 

@@ -1,0 +1,33 @@
+.requiredInfo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.9rem;
+    width: 25rem;
+}
+
+.requiredInfo > label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+}
+
+.requiredInfo > label > textarea {
+    width: 20rem;
+    height: 7rem;
+    resize: none;
+}
+
+.requiredInfo > label > textarea,
+.requiredInfo > label > input {
+   outline: none;
+   border: none;
+   padding: .2rem .1rem;
+}
+
+.requiredInfo > label:nth-child(4) > input {
+    width: 3rem;
+}
