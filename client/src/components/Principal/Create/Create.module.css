@@ -51,9 +51,8 @@
 
 .form > input {
     position:absolute;
+    bottom: -6rem;
     padding: 1rem 3rem;
-    bottom: -2rem;
-    right: 3rem;
     border: none;
     font-size: 1rem;
 }
@@ -63,4 +62,15 @@
 }
 .form > input:active{
     scale: 0.95;
+}
+
+.cancelButton {
+    right: 15rem;
+}
+.createButton {
+    right: 5rem;
+}
+
+.createButton:disabled {
+    background-color: rgb(83, 83, 83);
 }

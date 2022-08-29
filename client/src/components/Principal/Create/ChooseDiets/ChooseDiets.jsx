@@ -2,10 +2,9 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import style from './ChooseDiets.module.css';
 
-export default function ChooseDiets() {
+export default function ChooseDiets({selectDiets}) {
 
     const allDiets = useSelector((state) => state.allDiets);
-
 
     return (
         <div className={style.dietsConteiner}>
@@ -18,8 +17,7 @@ export default function ChooseDiets() {
                                 key={diet.id}
                                 type="checkbox"
                                 value={diet.name}
-                            /*  onChange={typesChangeHandler}
-                             disabled={(boxesDisabled && !(t.name === info.types[0] || t.name === info.types[1])) ? true : false} */
+                                onChange={selectDiets}
                             />{diet.name}
                         </label>))
                 }

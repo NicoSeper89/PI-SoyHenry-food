@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import RequiredInfo from "./RequiredInfo/RequiredInfo";
 import ChooseDiets from "./ChooseDiets/ChooseDiets";
 import Steps from "./Steps/Steps";
 import style from './Create.module.css';
+import { getRecipesBackend } from "../../../redux/actions";
 
 const Create = () => {
+
+    const history = useHistory();
+    const dispatch = useDispatch()
 
     const [infoForm, setInfoForm] = useState({
         name: "",
         image: "",
         healthScore: 0,
         summary: "",
+        diets: [],
         steps: {}
     });
 
@@ -21,13 +28,24 @@ const Create = () => {
         summaryValidation: false
     });
 
-    // const [enabledSubmit, setEnabledSubmit] = useState(false);
+    const [enabledSubmit, setEnabledSubmit] = useState(false);
+    const [newRecipe, setNewRecipe] = useState(false)
+
+    useEffect(() => {
+
+        const { nameValidation, imageValidation, healthScoreValidation, summaryValidation } = validation;
+
+        return (nameValidation && imageValidation && healthScoreValidation && summaryValidation) ?
+            setEnabledSubmit(true) :
+            setEnabledSubmit(false);
+
+    }, [setEnabledSubmit, validation]);
 
     const changeHandler = (e) => {
 
         setInfoForm({
             ...infoForm,
-            [e.target.name]: e.target.value
+            [e.target.name]: (e.target.name !== "healthScore") ? e.target.value : parseInt(e.target.value)
         })
 
         if (e.target.name === "healthScore") {
@@ -52,6 +70,21 @@ const Create = () => {
             })
         }
 
+    }
+
+    const selectDiets = (e) => {
+
+        if (e.target.checked === false) {
+            setInfoForm({
+                ...infoForm,
+                diets: infoForm.diets.filter(type => type !== e.target.value)
+            })
+        } else {
+            setInfoForm({
+                ...infoForm,
+                diets: [...infoForm.diets, e.target.value]
+            });
+        }
     }
 
     const addStep = (step) => {
@@ -88,10 +121,41 @@ const Create = () => {
 
     }
 
-    function formSubmit(e) {
+    const goBack = () => {
+
+        newRecipe && dispatch(getRecipesBackend())
+
+        history.push('/recipes')
+
+    }
+
+    async function formSubmit(e) {
 
         e.preventDefault();
-        console.log(infoForm);
+
+        let res = await fetch('http://localhost:3001/recipes', {method: "POST",  
+                                                                body: JSON.stringify(infoForm),   
+                                                                headers: { "Content-type": "application/json; charset=UTF-8" }})
+
+        res = await res.json(); console.log(res);
+
+        const createAgain = window.confirm("¿Crear otra receta?");
+
+        if (!createAgain) {dispatch(getRecipesBackend()); history.push('/recipes');}  
+        
+        setNewRecipe(true)
+
+        setInfoForm({name: "",
+                    image: "",
+                    healthScore: 0,
+                    summary: "",
+                    diets: [],
+                    steps: {}
+                });
+
+        setValidation({...validation,
+                        nameValidation: false,
+                        summaryValidation: false});
 
     }
 
@@ -99,25 +163,32 @@ const Create = () => {
         <div className={style.createConteiner}>
 
             <h2>CREAR RECETA</h2>
+
             <hr />
+
             <form className={style.form} onSubmit={formSubmit}>
                 <div>
+
                     <RequiredInfo name={infoForm.name}
                         image={infoForm.image}
                         healthScore={infoForm.healthScore}
                         summary={infoForm.summary}
                         changeHandler={changeHandler}
-                        validation={validation}/>
+                        validation={validation} />
 
-                    <ChooseDiets />
+                    <ChooseDiets selectDiets={selectDiets} />
+
                 </div>
+
                 <hr />
+
                 <Steps currentSteps={Object.entries(infoForm.steps)}
                     addStep={addStep}
                     deleteStep={deleteStep}
                     resetStep={resetStep} />
 
-                <input value="Enviar" type="submit" />
+                <input type="button" className={style.cancelButton} onClick={goBack} value="Volver" />
+                <input type="submit" className={style.createButton} disabled={!enabledSubmit} value="Crear" />
             </form>
         </div>
 

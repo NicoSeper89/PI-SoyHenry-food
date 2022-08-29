@@ -50,16 +50,29 @@ export function resetRecipes() {
         type: "RESET_RECIPES"
     }
 }
+export function loading() {
+    return {
+        type: "LOADING"
+    }
+}
+
+export function saveRecipes(recipes) {
+    return {
+        type: "SAVE_RECIPES",
+        payload: recipes
+    }
+}
 
 export function getRecipesBackend() {
     return (dispatch) => {
+        dispatch(loading());
         fetch('http://localhost:3001/recipe')
         .then(response => response.json()) 
         .then(data => {dispatch(getAllRecipes(data));
                        dispatch(getDietsBackend())})   
         .catch(err => {dispatch(getAllRecipes([]));
                        dispatch(getDietsBackend())} 
-            /* console.log('Solicitud de recetas al backend fallida', err) */); 
+            ); 
     }
 }
 
@@ -69,5 +82,14 @@ export function getDietsBackend() {
         .then(response => response.json()) 
         .then(data => dispatch(getAllDiets(data)))   
         .catch(err => console.log('Solicitud de dietas al backend fallida', err)); 
+    }
+}
+
+export function getRecipesByName(name) {
+    return (dispatch) => {
+        fetch(`http://localhost:3001/recipes?name=${name}`)
+        .then(response => response.json()) 
+        .then(data => dispatch(saveRecipes(data)))   
+        .catch(err => console.log('Solicitud de recetas por nombre al backend fallida', err)); 
     }
 }

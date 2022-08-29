@@ -67,6 +67,20 @@ const rootReducer = (state = initialState, actions) => {
                 countRecipes: [...state.backupRecipes].length,
                 page: 1
             }
+        case 'LOADING':
+
+            return {
+                ...state,
+                loading: true
+            }
+        case 'SAVE_RECIPES':
+
+            return {
+                ...state,
+                allRecipes: actions.payload,
+                countRecipes: actions.payload.length,
+                page: 1
+            }
 
         default: return { ...state };
     }

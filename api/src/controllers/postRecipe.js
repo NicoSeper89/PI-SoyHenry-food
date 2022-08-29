@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
         if (!name || !summary) return res.status(404).send("Creacion Cancelada. Falto Informacion"); 
 
         const newRecipe = await Recipe.create({name,
-                                               image,
+                                               [(/^.+.*\.(jpg|JPG|bmp|BMP|gif|GIF|tif|TIF|png|PNG)$/.test(image))? "image" : null]: image,
                                                summary,
                                                healthScore,
                                                steps
