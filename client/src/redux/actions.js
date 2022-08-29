@@ -81,7 +81,7 @@ export function getDietsBackend() {
         fetch('http://localhost:3001/diets')
         .then(response => response.json()) 
         .then(data => dispatch(getAllDiets(data)))   
-        .catch(err => console.log('Solicitud de dietas al backend fallida', err)); 
+        .catch(err => console.log('Solicitud de dietas al servidor fallida', err)); 
     }
 }
 
@@ -90,6 +90,6 @@ export function getRecipesByName(name) {
         fetch(`http://localhost:3001/recipes?name=${name}`)
         .then(response => response.json()) 
         .then(data => {dispatch(saveRecipes(data)); dispatch(loading(false))})   
-        .catch(err => console.log('Solicitud de recetas por nombre al backend fallida', err)); 
+        .catch(err => console.log('Solicitud de recetas por nombre al servidor fallida', err)); 
     }
 }
