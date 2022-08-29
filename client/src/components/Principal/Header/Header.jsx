@@ -1,27 +1,32 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
 import style from './Header.module.css';
 import { NavLink } from 'react-router-dom';
+import { getRecipesByName } from "../../../redux/actions";
 
 class Header extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            inputValue: ""
+            inputValue: "",
         }
     }
 
     changeHandler = (e) => {
-        this.setState({inputValue: e.target.value})
+        this.setState({...this.state,
+                        inputValue: e.target.value})
     }
 
     searchSubmit = (e) => {
+
         e.preventDefault();
 
+        (!!this.state.inputValue) && this.props.getRecipesByName(this.state.inputValue);
     }
-
+    
     render() {
-
+        
         return (
             <div className={style.header}>
 
@@ -47,4 +52,8 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+    getRecipesByName: (name) => dispatch(getRecipesByName(name))
+  })
+
+export default connect(null, mapDispatchToProps)(Header);

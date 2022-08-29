@@ -50,9 +50,10 @@ export function resetRecipes() {
         type: "RESET_RECIPES"
     }
 }
-export function loading() {
+export function loading(on) {
     return {
-        type: "LOADING"
+        type: "LOADING",
+        payload: on
     }
 }
 
@@ -64,9 +65,8 @@ export function saveRecipes(recipes) {
 }
 
 export function getRecipesBackend() {
-    return (dispatch) => {
-        dispatch(loading());
-        fetch('http://localhost:3001/recipe')
+    return (dispatch) => {dispatch(loading(true));
+        fetch('http://localhost:3001/recipes')
         .then(response => response.json()) 
         .then(data => {dispatch(getAllRecipes(data));
                        dispatch(getDietsBackend())})   
@@ -86,10 +86,10 @@ export function getDietsBackend() {
 }
 
 export function getRecipesByName(name) {
-    return (dispatch) => {
+    return (dispatch) => {dispatch(loading(true));
         fetch(`http://localhost:3001/recipes?name=${name}`)
         .then(response => response.json()) 
-        .then(data => dispatch(saveRecipes(data)))   
+        .then(data => {dispatch(saveRecipes(data)); dispatch(loading(false))})   
         .catch(err => console.log('Solicitud de recetas por nombre al backend fallida', err)); 
     }
 }

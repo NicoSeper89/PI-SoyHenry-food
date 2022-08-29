@@ -71,7 +71,7 @@ const rootReducer = (state = initialState, actions) => {
 
             return {
                 ...state,
-                loading: true
+                loading: actions.payload 
             }
         case 'SAVE_RECIPES':
 
