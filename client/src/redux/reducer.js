@@ -40,12 +40,29 @@ const rootReducer = (state = initialState, actions) => {
             }
         case 'ORDER':
 
-            const { typeOrder, asc } = actions.payload;
+            const { typeOrder, asc, atribute } = actions.payload;
+
+            let newOrder = []
+
+            if (typeOrder === "string") {
+                
+                newOrder = asc? [...state.allRecipes.sort((a, b) => (a[atribute].toLowerCase() > b[atribute].toLowerCase()) ? 1 : 
+                                                                    (a[atribute].toLowerCase() < b[atribute].toLowerCase()) ? -1 : 0)]:
+                                                                          
+                                [...state.allRecipes.sort((b, a) => (a[atribute].toLowerCase() > b[atribute].toLowerCase()) ? 1 : 
+                                                                    (a[atribute].toLowerCase() < b[atribute].toLowerCase()) ? -1 : 0)]
+            } else {
+
+                newOrder = asc? [...state.allRecipes.sort((a, b) => (a[atribute] > b[atribute]) ? 1 : 
+                                                                    (a[atribute] < b[atribute]) ? -1 : 0)]:
+                                                                          
+                                [...state.allRecipes.sort((b, a) => (a[atribute] > b[atribute]) ? 1 : 
+                                                                    (a[atribute] < b[atribute]) ? -1 : 0)]
+            }
 
             return {
                 ...state,
-                allRecipes: asc ? state.allRecipes.sort((a, b) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice() :
-                    state.allRecipes.sort((b, a) => (a[typeOrder] > b[typeOrder]) ? 1 : (a[typeOrder] < b[typeOrder]) ? -1 : 0).slice()
+                allRecipes: newOrder
             }
 
         case 'FILTER_BY_DIETS':

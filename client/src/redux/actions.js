@@ -70,7 +70,7 @@ export function getRecipesBackend() {
         .then(response => response.json()) 
         .then(data => {dispatch(getAllRecipes(data));
                        dispatch(getDietsBackend())})   
-        .catch(err => {dispatch(getAllRecipes([]));
+        .catch(err => {window.alert("ocurrio un error al cargar las recetas, recargue la pagina por favor");
                        dispatch(getDietsBackend())} 
             ); 
     }

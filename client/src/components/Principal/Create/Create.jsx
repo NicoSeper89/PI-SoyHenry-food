@@ -131,31 +131,44 @@ const Create = () => {
 
     async function formSubmit(e) {
 
-        e.preventDefault();
+        try {
+            e.preventDefault();
 
-        let res = await fetch('http://localhost:3001/recipes', {method: "POST",  
-                                                                body: JSON.stringify(infoForm),   
-                                                                headers: { "Content-type": "application/json; charset=UTF-8" }})
+            const res = await fetch('http://localhost:3001/recipes', {method: "POST",  
+                                                                    body: JSON.stringify(infoForm),   
+                                                                    headers: { "Content-type": "application/json; charset=UTF-8" }})
 
-        res = await res.json(); console.log(res);
+            if (res.status === 404){ 
+                window.alert("error al crear receta! No repita el nombre de una receta ya creada y complete todos los campos requeridos")
+            }
+            else {
+                const createAgain = window.confirm("¿Crear otra receta?");
+                
+                if (!createAgain) {dispatch(getRecipesBackend()); return history.push('/recipes');}  
+                
+                setNewRecipe(true)
+                
+                setInfoForm({name: "",
+                            image: "",
+                            healthScore: 0,
+                            summary: "",
+                            diets: [],
+                            steps: {}
+                        });
+                    
+                setValidation({...validation,
+                                nameValidation: false,
+                                summaryValidation: false});
+            }
 
-        const createAgain = window.confirm("¿Crear otra receta?");
 
-        if (!createAgain) {dispatch(getRecipesBackend()); history.push('/recipes');}  
+        } catch (err) {
+            window.alert("error al conectar con el servidor! no se pudo crear la receta");
+            newRecipe && dispatch(getRecipesBackend())
+            history.push('/recipes');
+        }
+
         
-        setNewRecipe(true)
-
-        setInfoForm({name: "",
-                    image: "",
-                    healthScore: 0,
-                    summary: "",
-                    diets: [],
-                    steps: {}
-                });
-
-        setValidation({...validation,
-                        nameValidation: false,
-                        summaryValidation: false});
 
     }
 

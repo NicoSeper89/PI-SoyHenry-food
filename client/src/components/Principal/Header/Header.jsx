@@ -38,7 +38,7 @@ class Header extends Component {
         return (
             <div className={style.header}>
 
-                <NavLink to="/">
+                <NavLink to={"/recipes"}>
                     <img className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
                 </NavLink>
 

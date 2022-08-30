@@ -50,15 +50,15 @@ class Side extends Component {
 
         return (
             <div className={style.side}>
-                <div>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "name", asc: true }))}>AZ</button>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "name", asc: false }))}>ZA</button>
+                <div className={style.orderConteiner}>
+                    <button onClick={(e) => dispatch(order({ typeOrder: "string", asc: true, atribute: "name" }))}>AZ</button>
+                    <button onClick={(e) => dispatch(order({ typeOrder: "string", asc: false, atribute: "name" }))}>ZA</button>
                 </div>
-                <div>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "healthScore", asc: true }))}>+ Points</button>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "healthScore", asc: false }))}>- Points</button>
+                <div className={style.orderConteiner}>
+                    <button onClick={(e) => dispatch(order({ typeOrder: "number", asc: true, atribute: "healthScore" }))}>+ Points</button>
+                    <button onClick={(e) => dispatch(order({ typeOrder: "number", asc: false, atribute: "healthScore" }))}>- Points</button>
                 </div>
-                <div className={style.diets}>
+                <div className={style.filterConteiner}>
                     {allDiets.map((diet) => (<label key={diet.id}>
                         <input type="checkbox" key={diet.id} value={diet.name} onChange={this.tickCheckbox} /> {diet.name}
                     </label>)

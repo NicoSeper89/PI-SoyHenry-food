@@ -2,17 +2,31 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     gap: .5em;
     padding: 1.5em;
     min-width: 15rem;
-    background-color: rgb(62, 110, 69);
+    height: 22rem;
+    background-color: rgba(56, 56, 56, 0.985);
+    color: rgb(208, 207, 207);
+    border-radius: 0.4rem / 0.4rem;
 }
 
-.diets {
+.filterConteiner {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     gap: .05em;
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+
+.orderConteiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
 }
