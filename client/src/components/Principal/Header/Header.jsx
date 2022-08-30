@@ -4,6 +4,7 @@ import style from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { getRecipesByName } from "../../../redux/actions";
 
+
 class Header extends Component {
 
     constructor(props) {
@@ -22,7 +23,14 @@ class Header extends Component {
 
         e.preventDefault();
 
-        (!!this.state.inputValue) && this.props.getRecipesByName(this.state.inputValue);
+        if (!!this.state.inputValue) {
+
+            this.props.getRecipesByName(this.state.inputValue);
+ 
+            this.props.history.push('/recipes')                                 
+
+        }
+        
     }
     
     render() {

@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
 
         if (!name || !summary) return res.status(404).send("Creacion Cancelada. Falto Informacion"); 
 
-        const newRecipe = await Recipe.create({name: name.split(" ").map(e => e[0].toUpperCase() + e.substr(1)).reduce((prev, current) => prev + " " + current),
+        const newRecipe = await Recipe.create({name: name.toLowerCase(),
                                                [(/^.+.*\.(jpg|JPG|bmp|BMP|gif|GIF|tif|TIF|png|PNG)$/.test(image))? "image" : null]: image,
                                                summary,
                                                healthScore,
@@ -35,3 +35,5 @@ module.exports = async (req, res) => {
 
 
 }
+
+// name.split(" ").map(e => e[0].toUpperCase() + e.substr(1)).reduce((prev, current) => prev + " " + current)

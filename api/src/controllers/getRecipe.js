@@ -39,18 +39,16 @@ const getRecipeByName = async (req, res) => {
             .then(response => response.json());
 
         //Filtra las recetas a solo las que tengan el valor de la query "name" incluida en su titulo       
-        let recipesApi = name? results.filter(recipe => {
-            const titleArr = recipe.title.toLowerCase().split(" ");
-            return titleArr.includes(name.toLowerCase())
-        }) : results;
+        let recipesApi = !!name? results.filter(recipe => recipe.title.toLowerCase().includes(name.toLowerCase())) 
+                                :results;
 
         //Objeto de cada receta solo con las propiedades necesarias
         recipesApi = recipesApi.map((recipe) => reduceObjectsRecipes(recipe))
 
         let recipesDB = await Recipe.findAll({
-            where: name? {
+            where: !!name? {
                 name: {
-                    [Op.substring]: name
+                    [Op.substring]: name.toLowerCase()
                 }
             } : {},
             include: {
@@ -61,16 +59,11 @@ const getRecipeByName = async (req, res) => {
             }
         })
 
-        if (name) recipesDB = recipesDB.filter(recipe => {
-            const nameArr = recipe.name.toLowerCase().split(" ");
-            return nameArr.includes(name.toLowerCase());
-        })
-
         recipesDB = recipesDB.map(recipe => modifyDietAttributes(recipe));
 
         const recipesAll = recipesApi.concat(recipesDB);
 
-        return (recipesAll.length) ? res.json(recipesAll) : res.send(`No se encontro ninguna recetea con la palabra ${name} en su nombre`);
+        return (recipesAll.length) ? res.json(recipesAll) : res.json([]);
 
 
 

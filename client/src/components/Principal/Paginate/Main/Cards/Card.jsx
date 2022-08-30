@@ -12,7 +12,7 @@ class Card extends Component {
             <NavLink to={`/recipes/${id}`}>
                 <div className={style.card}>
                     <img src={image} alt={`${id}Img`} />
-                    <h2 style={{ margin: 0 }}>{name}</h2>
+                    <h2 style={{ margin: 0 }}>{name[0].toUpperCase() + name.substr(1)}</h2>
                     <h3 style={{ margin: 0 }}>{healthScore}</h3>
                     <div className={style.dietsConteiner}>
                         {diets.map(diet => <span key={diet}>{diet}</span>)}

@@ -6,6 +6,7 @@ import style from './Paginate.module.css';
 class Paginate extends Component {
 
     render(){
+
         return(
         <div className={style.paginate}>
             <Side/>
@@ -14,5 +15,6 @@ class Paginate extends Component {
         )
     }
 }
+
 
 export default Paginate;

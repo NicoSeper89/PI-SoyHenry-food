@@ -8,14 +8,14 @@ import Create from './Create/Create.jsx';
 import style from './Principal.module.css';
 import { useSelector } from 'react-redux';
 
-export default function Principal() {
+export default function Principal({history}) {
 
   const { loading } = useSelector(state => state);
 
   return (
     <div className={style.principal}>
 
-      <Header />
+      <Header history={history}/>
 
       <Route exact path={`/recipes`} render={() => loading ?
                                         <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" /> :

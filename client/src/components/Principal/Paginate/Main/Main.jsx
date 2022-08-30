@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import style from './Main.module.css';
 import Buttons from './Buttons/Buttons.jsx';
 import Cards from './Cards/Cards.jsx';
@@ -9,12 +10,15 @@ class Main extends Component {
         return (
             <div className={style.main}>
                 <Buttons />
-                <Cards />
+                {
+                    !this.props.allRecipes.length?<>NO se encontro ni mierda</>:<Cards />
+                }
                 <Buttons />
             </div>
         )
     }
 }
 
+const mapStateToProps = (state) => ({allRecipes: state.allRecipes})
 
-export default Main;
+export default connect(mapStateToProps)(Main);

@@ -18,9 +18,9 @@ function App() {
       <Route exact path="/">
         <Homepage />
       </Route>
-      <Route path="/recipes">
-        <Principal />
-      </Route>
+
+      <Route path="/recipes" render={({history}) => <Principal history={history} />}/>
+
     </div>
   );
 }

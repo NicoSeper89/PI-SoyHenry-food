@@ -86,6 +86,7 @@ export function getDietsBackend() {
 }
 
 export function getRecipesByName(name) {
+    
     return (dispatch) => {dispatch(loading(true));
         fetch(`http://localhost:3001/recipes?name=${name}`)
         .then(response => response.json()) 
