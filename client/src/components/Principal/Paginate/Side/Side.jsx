@@ -8,17 +8,41 @@ class Side extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            markedDiets: []
+            markedDiets: [],
+            nameOrder: {
+                az: false,
+                za: false,
+            },
+            healthScoreOrder: {
+                mn: false,
+                mx: false
+            }
         }
 
+        this.tickOrder = this.tickOrder.bind(this);
         this.tickCheckbox = this.tickCheckbox.bind(this);
+        this.reset = this.reset.bind(this);
     }
 
-    componentDidUpdate({dispatch}) {
+    componentDidUpdate(prevProps, prevState) {
+
+        if (prevState.markedDiets.length !== this.state.markedDiets.length){
         
-        return (this.state.markedDiets.length !== 0)? 
-                                dispatch(filterByDiets(this.state.markedDiets)) : 
-                                dispatch(resetRecipes());
+           return (this.state.markedDiets.length !== 0)? 
+                                this.props.dispatch(filterByDiets(this.state.markedDiets)) : 
+                                this.props.dispatch(resetRecipes())
+                            }
+    }
+
+    tickOrder(e, typeOrder, asc, atribute) {
+
+        this.props.dispatch(order({ typeOrder, asc, atribute }));     
+        
+        console.log(e.target.name)
+
+        this.setState((state)=> ({...state, 
+                                 [`${atribute}Order`]: { [e.target.value]: true 
+        } }))
 
     }
 
@@ -42,28 +66,75 @@ class Side extends Component {
                 }
             })
         }
+
+        this.setState((state)=> ({...state,
+                                    nameOrder: {
+                                        az: false,
+                                        za: false,
+                                    },
+                                    healthScoreOrder: {
+                                        mn: false,
+                                        mx: false
+                                    } }))
+    }
+
+    reset(e) {
+        this.setState(state => ({markedDiets: [],
+                                    nameOrder: {
+                                        az: false,
+                                        za: false,
+                                },
+                                    healthScoreOrder: {
+                                        mn: false,
+                                        mx: false
+                                }}))
+        
+        
     }
 
     render() {
 
-        const { dispatch, allDiets } = this.props;
+        const { allDiets } = this.props;
 
         return (
             <div className={style.side}>
+                <h2>Ordenar Recetas</h2>
                 <div className={style.orderConteiner}>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "string", asc: true, atribute: "name" }))}>AZ</button>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "string", asc: false, atribute: "name" }))}>ZA</button>
+                    <button value={"az"} 
+                            disabled={this.state.nameOrder.az} 
+                            onClick={(e) => this.tickOrder(e, "string", true, "name")}>A-Z</button>
+
+                    <button value={"za"} 
+                            disabled={this.state.nameOrder.za}  
+                            onClick={(e) => this.tickOrder(e, "string", false, "name")}>Z-A</button>
                 </div>
+
                 <div className={style.orderConteiner}>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "number", asc: true, atribute: "healthScore" }))}>+ Points</button>
-                    <button onClick={(e) => dispatch(order({ typeOrder: "number", asc: false, atribute: "healthScore" }))}>- Points</button>
+                    <button value={"mn"}
+                            disabled={this.state.healthScoreOrder.mn}
+                            onClick={(e) => this.tickOrder(e, "number", true, "healthScore")}>MIN HS</button>
+
+                    <button value={"mx"}
+                            disabled={this.state.healthScoreOrder.mx}
+                            onClick={(e) => this.tickOrder(e, "number", false, "healthScore")}>MAX HS</button>
                 </div>
+                <hr className={style.line}/>
+                <h2>Filtrar Por Dietas</h2>
+
                 <div className={style.filterConteiner}>
                     {allDiets.map((diet) => (<label key={diet.id}>
-                        <input type="checkbox" key={diet.id} value={diet.name} onChange={this.tickCheckbox} /> {diet.name}
+                        <input type="checkbox" 
+                                key={diet.id} 
+                                value={diet.name} 
+                                checked={this.state.markedDiets.includes(diet.name)} 
+                                onChange={this.tickCheckbox} /> {diet.name}
                     </label>)
                     )}
                 </div>
+
+                <hr className={style.line}/>
+
+                <button className={style.resetButton} onClick={this.reset}>Reset</button>
             </div>
         )
     }

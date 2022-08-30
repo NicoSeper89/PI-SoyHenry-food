@@ -1,6 +1,7 @@
 import React from "react";
 import {useSelector} from 'react-redux';
 import Button from './Button.jsx';
+import style from './Buttons.module.css'
 
 const Buttons = () => {
     
@@ -18,7 +19,7 @@ const Buttons = () => {
     }
 
     return (
-        <div>
+        <div className={style.buttonConteiners}>
           <Button name={"<"} >{"<"}</Button>
 
           {impBotton(Math.ceil(countRecipes/9))}

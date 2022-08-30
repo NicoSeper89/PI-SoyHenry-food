@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {previousPage, changePage, nextPage } from '../../../../../redux/actions.js'
+import {previousPage, changePage, nextPage } from '../../../../../redux/actions.js';
 
 export default function Button({name}) {
 
@@ -27,7 +27,7 @@ export default function Button({name}) {
     } 
 
     return (
-        <button name={name} onClick={onClickButton}>{name}</button>
+        <button name={name} disabled={(page === name)} onClick={onClickButton}>{name}</button>
     )
 
 }

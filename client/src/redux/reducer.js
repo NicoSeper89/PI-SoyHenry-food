@@ -15,7 +15,8 @@ const rootReducer = (state = initialState, actions) => {
                 ...state,
                 backupRecipes: [...actions.payload],
                 allRecipes: actions.payload,
-                countRecipes: actions.payload.length
+                countRecipes: actions.payload.length,
+                page: 1
             }
         case 'GET_ALL_DIETS':
             return {
@@ -62,7 +63,8 @@ const rootReducer = (state = initialState, actions) => {
 
             return {
                 ...state,
-                allRecipes: newOrder
+                allRecipes: newOrder,
+                page: 1
             }
 
         case 'FILTER_BY_DIETS':
@@ -84,12 +86,14 @@ const rootReducer = (state = initialState, actions) => {
                 countRecipes: [...state.backupRecipes].length,
                 page: 1
             }
+
         case 'LOADING':
 
             return {
                 ...state,
                 loading: actions.payload 
             }
+            
         case 'SAVE_RECIPES':
 
             return {

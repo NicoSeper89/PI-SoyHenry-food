@@ -1,0 +1,42 @@
+.buttonConteiners {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.buttonConteiners>button {
+    position: relative;
+    height: 1.8rem;
+    width: 2.4rem;
+    background-color: rgba(89, 89, 89, 0.849);
+    color: rgb(243, 243, 242);
+    font-weight: bolder;
+    border-radius: .4rem;
+    border: none;
+
+}
+
+.buttonConteiners>button:hover {
+    scale: 1.1;
+}
+
+.buttonConteiners>button:active {
+    color: rgb(65, 65, 65);
+    background-color: rgba(255, 255, 255, 0.724);
+    scale: 0.9;
+}
+
+.buttonConteiners>button:disabled {
+    color: rgb(65, 65, 65);
+    background-color: hsla(39, 100%, 50%, 0.866);
+}
+
+.buttonConteiners>button:disabled:hover {
+    scale: 1;
+}
+
+.buttonConteiners>button:disabled:active {
+    scale: 1;
+}
