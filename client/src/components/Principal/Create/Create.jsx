@@ -112,9 +112,9 @@ const Create = () => {
 
     }
 
-    const resetStep = () => {
-
-        setInfoForm({
+    const resetStep = (e) => {
+        console.log(e)
+       return setInfoForm({
             ...infoForm,
             steps: {}
         })

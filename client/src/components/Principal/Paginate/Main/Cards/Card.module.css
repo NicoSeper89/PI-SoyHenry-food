@@ -4,8 +4,8 @@
     justify-content:space-between;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.849);
-    width: 20rem;
-    height: 32rem;
+    width: 23rem;
+    height: 33rem;
     overflow-x:hidden;
 }
 
@@ -37,6 +37,27 @@
 .scoreConteiner>h3{
     color: hsla(0, 0%, 33%, 0.966);
     background:   linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 29%, rgba(209,209,209,1) 63%, rgba(254,254,254,1) 100%);
+}
+
+.dietsConteiner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+    gap: .5em;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 9rem;
+    background: rgb(70, 70, 70)
+}
+
+.dietsConteiner > span {
+    color: rgb(192, 192, 192);
+    font-weight: bolder;
+    background-color: rgb(34, 34, 34);
+    padding: .4rem 1rem;
+    border-radius: 1rem;
 }
 
 .dietsConteiner {

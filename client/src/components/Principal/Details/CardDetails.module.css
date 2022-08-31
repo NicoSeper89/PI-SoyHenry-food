@@ -1,19 +1,121 @@
 .carddetails {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    gap: .5em;
-    padding: 1em;
-    background-color: red;
+    align-items:center;
+    gap: 1rem;
+    margin: 1rem 1%;
+    width: 94%;
+    padding: 2rem 2%;
+}
 
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap: 1rem;
+    width:inherit;
+    background-color: rgba(28, 28, 28, 0.98);
+    border-radius: 2rem;
+    padding: 1rem;
+    border: rgba(49, 49, 49, 0.711) solid .2rem;
+}
+
+.mainInfo {
+    display: flex;
+    align-items:stretch;
+    justify-content:flex-end;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.mainInfo>div>h1 {
+    color: rgba(44, 44, 44, 1);
+    background-color: rgba(236, 214, 42, 0.711);
+    border-radius: 3rem;
+    padding: .4rem 1rem;
+    border: rgba(44, 44, 44, 1) solid .2rem;
+}
+
+.mainInfo>div>h2 {
+    color: rgba(44, 44, 44, 1);
+    background-color: rgba(226, 58, 58, 0.711);
+    border-radius: 3rem;
+    padding: .4rem 1rem;
+    border: rgba(44, 44, 44, 1) solid .2rem;
+}
+
+.mainInfo>div:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 96%;
+    padding: 2%;
+    border-radius: 2rem;
+    background-color: rgba(44, 44, 44, 0.97);
+    gap: 0.9rem;
+}
+.mainInfo>img {
+    height: 26rem;
+    border-radius: 2rem;
+}
+
+
+.dietsConteiner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content:center;
+    gap: .5em;
+    flex-wrap: wrap;
+    width: 75%;
+}
+
+.dietsConteiner > span {
+    color: rgb(192, 192, 192);
+    font-weight: bolder;
+    background-color: rgb(34, 34, 34);
+    border: rgba(255, 255, 255, 0.711) solid .01rem;
+    padding: .4rem 1rem;
+    border-radius: 1rem;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .7rem;
+   color:rgb(198, 198, 198);
+   background-color: rgb(39, 39, 39);
+   padding: 1rem;
+   border-radius: 1rem;
+   border: rgb(72, 72, 72) solid .1rem;
+   
+}
+
+.summary>h3 {
+    font-size: 2rem;
+}
+
+.summary>span a {
+    color: white;
+    text-decoration: none;
 }
 
 .steps {
+    font-size: 1.2rem;
+    color: rgb(199, 198, 198);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: .3em;
+    gap: .7em;
+    padding: 1rem;
+}
 
+.onBack {position:absolute;        
 }

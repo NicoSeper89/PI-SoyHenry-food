@@ -15,7 +15,7 @@ class Card extends Component {
                     <img src={image} alt={`${id}Img`} />
                     <div className={style.scoreConteiner} ><h3 >{`Health Score: ${healthScore}`}</h3></div>
                     <div className={style.dietsConteiner}>
-                        {diets.map((diet, i) => <span key={diet}>{/* "- " + */diet}</span>)}
+                        {diets.map((diet, i) => <span key={diet}>{diet}</span>)}
                     </div>
                 </div>
             </NavLink>

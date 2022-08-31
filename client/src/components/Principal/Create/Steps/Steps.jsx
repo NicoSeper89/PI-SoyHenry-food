@@ -33,6 +33,16 @@ export default function Steps(props) {
         }
     }
 
+    const pressReset = (e) => {
+        e.preventDefault();
+        resetStep()
+    }
+
+    const pressDelete = (e) => {
+        e.preventDefault();
+        deleteStep()
+    }
+
     return (
         <div className={style.stepsConteiner}>
             <label >
@@ -46,8 +56,8 @@ export default function Steps(props) {
                     onKeyDown={e => (e.key === "Enter") ? pressAdd(e) : null}
                 />
                 <div>
-                    <button onClick={resetStep}>Reset</button>
-                    <button onClick={deleteStep}>Borrar Ultima</button>
+                    <button onClick={pressReset}>Reset</button>
+                    <button onClick={pressDelete}>Borrar Ultima</button>
                     <button onClick={pressAdd}>Agregar</button>
                 </div>
 
