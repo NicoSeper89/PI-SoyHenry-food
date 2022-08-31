@@ -1,28 +1,61 @@
-.card {
+.card {position: relative;
     display: flex;
     flex-direction: column;
-    justify-content:flex-start;
+    justify-content:space-between;
     align-items: center;
-    gap: .4em;
-    background-color: grey;
-    width: 20em;
-    height: 25em;
-    padding: .6em 0em;
+    background-color: rgba(255, 255, 255, 0.849);
+    width: 20rem;
+    height: 32rem;
+    overflow-x:hidden;
+}
+
+
+.nameRecipe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(36, 36, 36);
+    margin: 0;
+    width: 100%;
+    height: 5rem;
+}
+
+.nameRecipe>h2 {
+    font-size: 1rem;
+    color:rgb(247, 247, 247)
 }
 
 .card > img {
-    width: 18em;
+    height: 18rem;
+}
+
+.scoreConteiner {
+    background: black;
+    width: 100%;
+}
+
+.scoreConteiner>h3{
+    color: hsla(0, 0%, 33%, 0.966);
+    background:   linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 29%, rgba(209,209,209,1) 63%, rgba(254,254,254,1) 100%);
 }
 
 .dietsConteiner {
-    background-color: red;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content:center;
     gap: .5em;
     flex-wrap: wrap;
+    width: 100%;
+    height: 9rem;
+    background: rgb(70, 70, 70)
 }
 
 .dietsConteiner > span {
-    background-color: blueviolet;
+    color: rgb(192, 192, 192);
+    font-weight: bolder;
+    background-color: rgb(34, 34, 34);
+    padding: .4rem 1rem;
+    border-radius: 1rem;
 }

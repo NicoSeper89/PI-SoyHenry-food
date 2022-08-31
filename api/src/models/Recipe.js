@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
 
     image: {
       type: DataTypes.STRING,
-      defaultValue: "https://thumbs.dreamstime.com/b/signo-de-interrogaci%C3%B3n-hecho-de-guisantes-en-la-placa-32369130.jpg",
+      defaultValue: "https://i.postimg.cc/t4F6nM5b/324.png",
       validate: {isUrl: true}
     },
 

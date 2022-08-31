@@ -6,3 +6,8 @@
     gap: 1em;
     align-items: center;
 }
+
+.cards>a {
+    color: rgb(192, 192, 192);
+    text-decoration: none;
+}
