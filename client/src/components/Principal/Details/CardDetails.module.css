@@ -5,9 +5,8 @@
     justify-content: flex-start;
     align-items:center;
     gap: 1rem;
-    margin: 1rem 1%;
-    width: 94%;
-    padding: 2rem 2%;
+    margin: 3rem 2%;
+    width: 96%;
 }
 
 .card {
@@ -28,7 +27,6 @@
     align-items:stretch;
     justify-content:flex-end;
     gap: 1rem;
-    padding: 1rem;
 }
 
 .mainInfo>div>h1 {
@@ -114,8 +112,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: .7em;
-    padding: 1rem;
-}
-
-.onBack {position:absolute;        
+    padding: 2rem;
+    text-align: left;
+    background-color: rgb(39, 39, 39);
+    border-radius: 2rem;
 }

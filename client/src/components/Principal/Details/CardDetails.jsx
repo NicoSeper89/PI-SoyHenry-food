@@ -1,21 +1,13 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import style from './CardDetails.module.css';
 
 export default function CardDetails({ recipe }) {
 
     const { id, name, image, healthScore, diets, steps, summary } = recipe;
 
-    const history = useHistory();
-
-    const onBack = (e) => {
-        e.preventDefault();
-        history.push('/recipes')
-    }
-
     return (
         <div className={style.carddetails}>
-            <button onClick={onBack} className={style.onBack}>Volver</button>
+
             <div className={style.card}>
                 <div className={style.mainInfo}>
                     <div>
@@ -32,7 +24,7 @@ export default function CardDetails({ recipe }) {
                             <span dangerouslySetInnerHTML={{ __html: summary }}></span>
                         </div>
                     </div>
-                    <img className={style} src={image} alt={`${id}`} />
+                    <img src={image} alt={`${id}`} />
                 </div>
                 {
                     (Object.entries(steps).length) ?
