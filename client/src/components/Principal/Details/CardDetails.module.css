@@ -95,10 +95,6 @@
    
 }
 
-.summary>h3 {
-    font-size: 2rem;
-}
-
 .summary>span a {
     color: white;
     text-decoration: none;
@@ -116,4 +112,8 @@
     text-align: left;
     background-color: rgb(39, 39, 39);
     border-radius: 2rem;
+}
+
+.steps>h4 {
+    font-size: 2.5rem;
 }

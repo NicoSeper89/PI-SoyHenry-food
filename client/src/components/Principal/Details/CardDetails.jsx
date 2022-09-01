@@ -20,7 +20,6 @@ export default function CardDetails({ recipe }) {
                         </div>
 
                         <div className={style.summary}>
-                            <h3>Resumen</h3>
                             <span dangerouslySetInnerHTML={{ __html: summary }}></span>
                         </div>
                     </div>
@@ -28,7 +27,10 @@ export default function CardDetails({ recipe }) {
                 </div>
                 {
                     (Object.entries(steps).length) ?
-                        <div className={style.steps}>{Object.entries(steps).map(([key, value]) => <span key={key}>{key}: {value}</span>)}</div>
+                        <div className={style.steps}>
+                            <h4>Pasos</h4>
+                            {Object.entries(steps).map(([key, value]) => <span key={key}>{key}: {value}</span>)}
+                        </div>
                         : null
                 }
             </div>

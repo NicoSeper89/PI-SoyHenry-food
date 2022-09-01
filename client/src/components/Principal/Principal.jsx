@@ -17,7 +17,7 @@ export default function Principal({history}) {
 
       <Header history={history}/>
 
-      <Route exact path={`/recipes`} render={() => loading ?
+      <Route exact path={`/recipes`} render={() => loading?
                                         <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" /> :
                                         <Paginate />} />
   
