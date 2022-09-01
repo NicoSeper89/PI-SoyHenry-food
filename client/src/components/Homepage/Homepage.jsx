@@ -12,8 +12,8 @@ export default function Homepage() {
                     <button className={style.button}>INGRESAR</button>
                 </NavLink>
                 <div className={style.socialDiv}>
-                    <a href="https://www.googasdasdasdle.com"><img src="https://i.postimg.cc/xThMr2PB/logo-Linkedin.png" alt="github" />LINKEDIN</a>
-                    <a href="https://www.gooasdasdasdgle.com"><img src="https://i.postimg.cc/Vs9NRcSz/logo-Git-Hub.png" alt="github" />GITHUB</a>
+                    <a href="https://www.linkedin.com/in/nicolassepertino/"><img src="https://i.postimg.cc/xThMr2PB/logo-Linkedin.png" alt="github" />LINKEDIN</a>
+                    <a href="https://github.com/NicoSeper89"><img src="https://i.postimg.cc/Vs9NRcSz/logo-Git-Hub.png" alt="github" />GITHUB</a>
                 </div>
             </div>
         </div>

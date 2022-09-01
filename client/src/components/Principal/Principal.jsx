@@ -7,6 +7,7 @@ import Details from './Details/Details.jsx';
 import Create from './Create/Create.jsx';
 import style from './Principal.module.css';
 import { useSelector } from 'react-redux';
+import Loading from './Loading/Loading.jsx';
 
 export default function Principal({history}) {
 
@@ -17,9 +18,7 @@ export default function Principal({history}) {
 
       <Header history={history}/>
 
-      <Route exact path={`/recipes`} render={() => loading?
-                                        <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" /> :
-                                        <Paginate />} />
+      <Route exact path={`/recipes`} render={() => loading? <Loading /> : <Paginate />} />
   
       <Route exact path={`/recipes/:id`}
                    render={({ match }) => (match.params.id === "create")?

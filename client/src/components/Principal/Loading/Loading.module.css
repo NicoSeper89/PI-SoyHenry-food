@@ -1,0 +1,62 @@
+.conteinerLoader {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 30rem;
+    width: 100%;
+}
+
+.conteinerLoader>div {
+    background-color: rgba(58, 58, 58, 0.99);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 2rem;
+}
+
+.egg {
+    display: block;
+    position: relative;
+    width: 118px;
+    height: 160px;
+    background-color: #FFF;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform-origin: 50% 100%;
+    animation: eggRot 2s linear infinite alternate;
+  }
+  .egg:after{
+    content:"";
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    width: 80px;
+    height: 86px;
+    transform: translateX(-50%);
+    background-color: #ffd900;
+    border-radius: 50% ;
+  }
+  
+  @keyframes eggRot {
+    0%{    transform: rotate(-25deg)}
+    100%{    transform: rotate(25deg)}
+  }  
+
+  .loader{
+    font-size: 48px;
+    color: transparent;
+    overflow:hidden;
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow:0 0 #FFF, 5em 0 #FFF;
+    animation:marquee 2s infinite ease;
+  }
+  .loader:before {
+    content:"Loading...";
+  }
+
+  @keyframes marquee {to{text-shadow:-5em 0 #FFF, 0 0 #FFF}}
