@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import fetch from "node-fetch";
 import CardDetails from "./CardDetails";
 import style from './Details.module.css';
+import Loading from '../Loading/Loading.jsx';
 
 const Details = ({id}) => {
 
@@ -29,7 +30,7 @@ const Details = ({id}) => {
         <div className={style.detailsConteiner}>
             <button onClick={onBack} className={style.onBack}>{"<<<"}</button>
             {
-              (error)? <>ERRORR</> : (Object.entries(recipe).length)? <CardDetails recipe={recipe}/> : <>NO CARGOO</>
+              (error)? <>ERRORR</> : (Object.entries(recipe).length)? <CardDetails recipe={recipe}/> : <Loading/>
             }
         </div>
     )

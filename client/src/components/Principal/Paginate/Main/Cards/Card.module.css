@@ -8,6 +8,13 @@
     overflow-x:hidden;
 }
 
+.card:hover {
+    scale: 1.02
+}
+.card:active {
+    scale: 0.98;
+}
+
 
 .nameRecipe {
     display: flex;
@@ -34,7 +41,7 @@
 }
 
 .scoreConteiner>h3{
-    color: hsla(0, 0%, 33%, 0.966);
+    color: hsla(0, 0%, 16%, 0.966);
     background: hsla(39, 100%, 50%, 0.866);  /* linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 29%, rgba(209,209,209,1) 63%, rgba(254,254,254,1) 100%); */
 }
 

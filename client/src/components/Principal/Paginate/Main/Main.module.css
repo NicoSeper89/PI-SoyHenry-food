@@ -1,12 +1,11 @@
 .main {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:space-between;
     align-items: center;
     padding: 1.5rem .7rem;
     gap: 1.5rem;
     background-color: rgba(56, 56, 56, 0.985);
     width: 100%;
     border-radius: .4rem;
-    box-shadow: rgba(172, 172, 172, 0.904) .2rem .2rem 1rem;
 }

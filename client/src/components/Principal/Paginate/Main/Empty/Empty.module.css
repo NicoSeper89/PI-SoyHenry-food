@@ -1,0 +1,14 @@
+.empty {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    align-items: center;
+    padding: 1rem;
+    color: rgb(181, 181, 181);
+    font-size: 1rem;
+    border: rgb(103, 0, 0) solid 0.2rem;
+    background-color: rgb(174, 2, 2);
+    border-radius: 5rem;
+}
+

@@ -22,7 +22,7 @@ export default function Principal({history}) {
   
       <Route exact path={`/recipes/:id`}
                    render={({ match }) => (match.params.id === "create")?
-                                            (loading ? <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" /> : 
+                                            (loading ? <Loading /> : 
                                                        <Create />) 
                                             : <Details id={match.params.id}/>
                             } />

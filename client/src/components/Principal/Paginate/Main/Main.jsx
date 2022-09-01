@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import style from './Main.module.css';
 import Buttons from './Buttons/Buttons.jsx';
 import Cards from './Cards/Cards.jsx';
+import Empty from './Empty/Empty.jsx'
 
 class Main extends Component {
 
@@ -11,7 +12,7 @@ class Main extends Component {
             <div className={style.main}>
                 <Buttons />
                 {
-                    !this.props.allRecipes.length?<>NO se encontro ni mierda</>:<Cards />
+                    !this.props.allRecipes.length? <Empty />:<Cards />
                 }
                 <Buttons />
             </div>
