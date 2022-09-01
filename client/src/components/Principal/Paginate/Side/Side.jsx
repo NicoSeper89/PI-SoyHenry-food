@@ -36,9 +36,7 @@ class Side extends Component {
 
     tickOrder(e, typeOrder, asc, atribute) {
 
-        this.props.dispatch(order({ typeOrder, asc, atribute }));     
-        
-        console.log(e.target.name)
+        this.props.dispatch(order({ typeOrder, asc, atribute }));
 
         this.setState((state)=> ({...state, 
                                  [`${atribute}Order`]: { [e.target.value]: true 
@@ -88,7 +86,8 @@ class Side extends Component {
                                         mn: false,
                                         mx: false
                                 }}))
-        
+
+    return this.props.dispatch(resetRecipes())
         
     }
 
