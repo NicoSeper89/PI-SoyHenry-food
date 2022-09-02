@@ -32,10 +32,6 @@
     color: white;
 }
 
-.textareaError {
-    border: red solid 0.15rem;
-    color:red
-}
 
 .stepsConteiner>label>div {
     position: relative;
@@ -44,7 +40,7 @@
     width: 20.4rem;
 }
 
-.stepsConteiner>label>div>button {
+.button {
     width: 6.5rem;
     padding: 0.2rem .9rem;
     border: none;
@@ -52,8 +48,17 @@
     background-color: rgb(71, 71, 71);
 }
 
-.stepsConteiner>label>div>button:active {
+.button:active {
     scale: 0.9;
+}
+
+.buttonDisable {
+    color: rgb(71, 71, 71);;
+    background-color: rgb(165, 165, 165);;
+}
+
+.buttonDisable:active {
+    scale: 1
 }
 
 .currentSteps {
@@ -78,15 +83,21 @@
 .currentSteps>div>span {
     position: relative;
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 0.2rem;
+    gap: .8rem;
 }
 
-
-
-.textError {
-    font-size: 1rem;
-    font-style: normal;
-    font-weight: normal;
-    color: hsla(0, 95%, 54%, 0.928)
+.buttonSteps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20%;
+    padding: .7rem;
+    width: .8rem;
+    height: .8rem;
+    font-weight: bolder;
+    color: rgb(210, 210, 210);
+    background-color: rgb(71, 71, 71);
 }

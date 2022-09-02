@@ -7,7 +7,7 @@ class RequiredInfo extends Component {
 
         const { name, image, healthScore, summary, changeHandler } = this.props
 
-        const {nameValidation, imageValidation, healthScoreValidation, summaryValidation} = this.props.validation
+        const {nameValidation, healthScoreValidation, summaryValidation} = this.props.validation
 
         return (
             <div className={style.requiredInfo}>
@@ -20,17 +20,16 @@ class RequiredInfo extends Component {
                         onChange={changeHandler}
                         type="text"
                         autoComplete="off" />
-                        {!nameValidation? <span className={style.textError}>No debe estar vacio o comenzar con espacio</span>:null}
+                        {!nameValidation? <span className={style.textError}>Debe ingresar un nombre</span>:null}
                 </label>
 
                 <label >URL-Imagen
-                    <input className={style[`dato${!imageValidation ? `Error` : ""}`]}
+                    <input className={style.dato}
                         name={"image"}
                         value={image}
                         onChange={changeHandler}
                         type="text"
                         autoComplete="off" />
-                         {!imageValidation? <span className={style.textError}>No debe empezar con espacios</span>:null}
                 </label>
 
                 <label >Health Score*
@@ -50,14 +49,11 @@ class RequiredInfo extends Component {
                         onChange={changeHandler}
                         type="text"
                         autoComplete="off" />
-                        {!summaryValidation? <span className={style.textError}>No debe estar vacio o comenzar con espacio</span>:null}
+                        {!summaryValidation? <span className={style.textError}>Debe ingresar una descripcion</span>:null}
                 </label>
             </div>
         )
     }
-
-
 }
-
 
 export default RequiredInfo

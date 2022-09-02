@@ -23,7 +23,6 @@ const Create = () => {
 
     const [validation, setValidation] = useState({
         nameValidation: false,
-        imageValidation: true,
         healthScoreValidation: true,
         summaryValidation: false
     });
@@ -33,9 +32,9 @@ const Create = () => {
 
     useEffect(() => {
 
-        const { nameValidation, imageValidation, healthScoreValidation, summaryValidation } = validation;
+        const { nameValidation, healthScoreValidation, summaryValidation } = validation;
 
-        return (nameValidation && imageValidation && healthScoreValidation && summaryValidation) ?
+        return (nameValidation && healthScoreValidation && summaryValidation) ?
             setEnabledSubmit(true) :
             setEnabledSubmit(false);
 
@@ -55,21 +54,13 @@ const Create = () => {
                 healthScoreValidation: (e.target.value < 0 || e.target.value > 100) ? false : true
             })
 
-        } else if (e.target.name === "image") {
-
-            setValidation({
-                ...validation,
-                imageValidation: (/^\s+\s*/.test(e.target.value)) ? false : true
-            })
-
         } else {
 
             setValidation({
                 ...validation,
-                [`${e.target.name}Validation`]: (/^\s+\s*/.test(e.target.value) || e.target.value === "") ? false : true
+                [`${e.target.name}Validation`]: (/^\s*$/.test(e.target.value)) ? false : true
             })
         }
-
     }
 
     const selectDiets = (e) => {
@@ -113,7 +104,6 @@ const Create = () => {
     }
 
     const resetStep = (e) => {
-        console.log(e)
        return setInfoForm({
             ...infoForm,
             steps: {}
@@ -129,13 +119,33 @@ const Create = () => {
 
     }
 
+    const deleteStepByN = (n) => {
+
+        const newSteps = {};
+        
+        Object.entries(infoForm.steps).forEach(([key, value]) => {
+               
+            if (key < n) {newSteps[key] = value}
+            else if (key > n) {newSteps[key - 1] = value}
+        
+        })
+        
+        return setInfoForm({
+            ...infoForm,
+            steps: newSteps
+        })
+
+    }
+
     async function formSubmit(e) {
 
         try {
             e.preventDefault();
 
             const res = await fetch('http://localhost:3001/recipes', {method: "POST",  
-                                                                    body: JSON.stringify(infoForm),   
+                                                                    body: JSON.stringify({...infoForm, 
+                                                                                            name: infoForm.name.trim(),
+                                                                                            summary: infoForm.summary.trim()}),   
                                                                     headers: { "Content-type": "application/json; charset=UTF-8" }})
 
             if (res.status === 404){ 
@@ -189,7 +199,7 @@ const Create = () => {
                         changeHandler={changeHandler}
                         validation={validation} />
 
-                    <ChooseDiets selectDiets={selectDiets} />
+                    <ChooseDiets selectDiets={selectDiets} diets={infoForm.diets} />
 
                 </div>
 
@@ -198,7 +208,8 @@ const Create = () => {
                 <Steps currentSteps={Object.entries(infoForm.steps)}
                     addStep={addStep}
                     deleteStep={deleteStep}
-                    resetStep={resetStep} />
+                    resetStep={resetStep} 
+                    deleteStepByN={deleteStepByN}/>
 
                 <input type="button" className={style.cancelButton} onClick={goBack} value="Volver" />
                 <input type="submit" className={style.createButton} disabled={!enabledSubmit} value="Crear" />
