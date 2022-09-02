@@ -19,7 +19,8 @@ function App() {
         <Homepage />
       </Route>
 
-      <Route path="/recipes" render={({history}) => <Principal history={history} />}/>
+      <Route path="/recipes" 
+             render={({history, location}) => <Principal history={history} location={location} />}/>
 
     </div>
   );

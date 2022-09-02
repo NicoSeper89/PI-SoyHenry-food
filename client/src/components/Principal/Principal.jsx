@@ -9,14 +9,14 @@ import style from './Principal.module.css';
 import { useSelector } from 'react-redux';
 import Loading from './Loading/Loading.jsx';
 
-export default function Principal({history}) {
+export default function Principal({history, location}) {
 
   const { loading } = useSelector(state => state);
 
   return (
     <div className={style.principal}>
 
-      <Header history={history}/>
+      <Header history={history} location={location}/>
 
       <Route exact path={`/recipes`} render={() => loading? <Loading /> : <Paginate />} />
   

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {connect} from "react-redux";
 import style from './Header.module.css';
 import { NavLink } from 'react-router-dom';
-import { getRecipesByName } from "../../../redux/actions";
+import { getRecipesByName,resetRecipes } from "../../../redux/actions";
 
 
 class Header extends Component {
@@ -32,28 +32,38 @@ class Header extends Component {
         }
         
     }
+
+    returnRecipes = (e) => {
+
+        e.preventDefault();
+
+        this.props.history.push('/');
+
+        this.props.resetRecipes()
+
+    }
     
     render() {
+
+        console.log(this.props.location)
         
         return (
             <div className={style.header}>
 
-                <NavLink to={"/recipes"}>
-                    <img className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
-                </NavLink>
-
-                <div className={style.inputsContainer}>
-
+                
+                <img onClick={this.returnRecipes} className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
+                
+                {(this.props.location.pathname === "/recipes/create")? <div>asdklasld</div>
+                :
+               (<div className={style.inputsContainer}>
                     <NavLink style={{textDecoration: 'none'}} to="/recipes/create">
                         <button className={style.buttonCreate}>Crear Receta</button>
                     </NavLink>
-
                     <form onSubmit={this.searchSubmit} className={style.search}>
                         <input type="text" value={this.state.inputValue} onChange={this.changeHandler}/>
                         <input className={style.buttonCreate} value={"Buscar"} type="submit" />
                     </form>
-
-                </div>
+                </div>)}
 
             </div>
         )
@@ -61,7 +71,8 @@ class Header extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    getRecipesByName: (name) => dispatch(getRecipesByName(name))
+    getRecipesByName: (name) => dispatch(getRecipesByName(name)),
+    resetRecipes: () => dispatch(resetRecipes())
   })
 
 export default connect(null, mapDispatchToProps)(Header);

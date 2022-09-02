@@ -133,7 +133,7 @@ class Side extends Component {
 
                 <hr className={style.line}/>
 
-                <button className={style.resetButton} onClick={this.reset}>Reset</button>
+                <button className={style.resetButton} onClick={this.reset}>Reiniciar</button>
             </div>
         )
     }
