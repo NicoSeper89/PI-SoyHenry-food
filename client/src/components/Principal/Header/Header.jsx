@@ -50,21 +50,27 @@ class Header extends Component {
         return (
             <div className={style.header}>
 
-                
                 <img onClick={this.returnRecipes} className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
-                
-                {(this.props.location.pathname === "/recipes/create")? <div>asdklasld</div>
-                :
-               (<div className={style.inputsContainer}>
-                    <NavLink style={{textDecoration: 'none'}} to="/recipes/create">
-                        <button className={style.buttonCreate}>Crear Receta</button>
-                    </NavLink>
-                    <form onSubmit={this.searchSubmit} className={style.search}>
-                        <input type="text" value={this.state.inputValue} onChange={this.changeHandler}/>
-                        <input className={style.buttonCreate} value={"Buscar"} type="submit" />
-                    </form>
-                </div>)}
-
+                    
+                <div className={style.inputsContainer}>
+                    {
+                    (this.props.location.pathname === "/recipes/create")
+                                ? 
+                        (<NavLink style={{textDecoration: 'none'}} to="/recipes">
+                            <button className={style.buttonCreate}>Volver</button>
+                        </NavLink>)
+                        :
+                        (<>
+                            <NavLink style={{textDecoration: 'none'}} to="/recipes/create">
+                                <button className={style.buttonCreate}>Crear Receta</button>
+                            </NavLink>
+                            <form onSubmit={this.searchSubmit} className={style.search}>
+                                <input type="text" value={this.state.inputValue} onChange={this.changeHandler}/>
+                                <input className={style.buttonCreate} value={"Buscar"} type="submit" />
+                            </form>
+                        </>)
+                    }
+                </div>
             </div>
         )
     }
