@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { API_KEY } = process.env;
-const fetch = require('node-fetch');
+const axios = require("axios");
 const { Recipe, Diet } = require(`../db.js`);
 const { Op } = require("sequelize");
 
@@ -33,10 +33,10 @@ const getRecipeByName = async (req, res) => {
         const { name } = req.query
 
         // Busca 100 recetas en la API 
-        const { results } = await fetch("https://apimocha.com/n.s.recipes/allrecipes"
+        const { results } = await axios.get("https://apimocha.com/n.s.recipes/allrecipes"
             // `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
             )
-            .then(response => response.json());
+            .then(r => r.data);
 
         //Filtra las recetas a solo las que tengan el valor de la query "name" incluida en su titulo       
         let recipesApi = !!name? results.filter(recipe => recipe.title.toLowerCase().includes(name.toLowerCase())) 
@@ -84,8 +84,8 @@ const getRecipeById = async (req, res) => {
 
         if (!id.includes("-")) {
 
-            const recipeApi = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
-                .then(response => response.json());
+            const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`)
+                .then(r => r.data);
 
             if (recipeApi.hasOwnProperty('id')) return res.json(reduceObjectsRecipes(recipeApi));
 

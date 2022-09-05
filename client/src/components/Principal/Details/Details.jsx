@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import fetch from "node-fetch";
+import axios from 'axios';
 import CardDetails from "./CardDetails";
 import style from './Details.module.css';
 import Loading from '../Loading/Loading.jsx';
@@ -15,9 +15,8 @@ const Details = ({id}) => {
 
     useEffect(() => {
         
-        fetch(`http://localhost:3001/recipes/${id}`)
-        .then(response => response.json())
-        .then(data => setRecipe(data))
+        axios.get(`http://localhost:3001/recipes/${id}`)
+        .then(response => setRecipe(response.data))
         .catch(() => setError(true))
 
       }, [id])
@@ -36,7 +35,7 @@ const Details = ({id}) => {
                 
         if (sureToDeleted) { 
 
-            const res = await fetch(`http://localhost:3001/recipes/${id}`, {method: "DELETE"})
+            const res = await axios.delete(`http://localhost:3001/recipes/${id}`)
 
             if (res.status === 500) return window.alert("no se pudo eliminar la receta");
     

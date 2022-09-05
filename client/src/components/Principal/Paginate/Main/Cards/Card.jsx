@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import style from './Card.module.css';
 import {getRecipesBackend} from '../../../../../redux/actions.js'
 
@@ -13,7 +14,7 @@ class Card extends Component {
                 
         if (sureToDeleted) { 
 
-            const res = await fetch(`http://localhost:3001/recipes/${this.props.id}`, {method: "DELETE"})
+            const res = await axios.delete(`http://localhost:3001/recipes/${this.props.id}`)
 
             if (res.status === 500) return window.alert("no se pudo eliminar la receta");
     

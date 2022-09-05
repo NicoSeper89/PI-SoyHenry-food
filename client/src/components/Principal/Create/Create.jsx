@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 import RequiredInfo from "./RequiredInfo/RequiredInfo";
 import ChooseDiets from "./ChooseDiets/ChooseDiets";
 import Steps from "./Steps/Steps";
@@ -143,11 +144,9 @@ const Create = () => {
         try {
             e.preventDefault();
 
-            const res = await fetch('http://localhost:3001/recipes', {method: "POST",  
-                                                                    body: JSON.stringify({...infoForm, 
-                                                                                            name: infoForm.name.trim(),
-                                                                                            summary: infoForm.summary.trim()}),   
-                                                                    headers: { "Content-type": "application/json; charset=UTF-8" }})
+            const res = await axios.post('http://localhost:3001/recipes', {...infoForm, 
+                                                                            name: infoForm.name.trim(),
+                                                                            summary: infoForm.summary.trim()})
 
             if (res.status === 404){ 
                 window.alert("error al crear receta! No repita el nombre de una receta ya creada y complete todos los campos requeridos")

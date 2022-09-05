@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 
 export function getAllRecipes(recipes) {
     return {
@@ -72,9 +72,8 @@ export function newRecipe() {
 
 export function getRecipesBackend() {
     return (dispatch) => {dispatch(loading(true));
-        fetch('http://localhost:3001/recipes')
-        .then(response => response.json()) 
-        .then(data => {dispatch(getAllRecipes(data));
+        axios.get('http://localhost:3001/recipes')
+        .then(response => {dispatch(getAllRecipes(response.data));
                        dispatch(getDietsBackend())})   
         .catch(err => {window.alert("ocurrio un error al cargar las recetas, recargue la pagina por favor");
                        dispatch(getDietsBackend())} 
@@ -84,9 +83,8 @@ export function getRecipesBackend() {
 
 export function getDietsBackend() {
     return (dispatch) => {
-        fetch('http://localhost:3001/diets')
-        .then(response => response.json()) 
-        .then(data => dispatch(getAllDiets(data)))   
+        axios.get('http://localhost:3001/diets')
+        .then(response => dispatch(getAllDiets(response.data)))   
         .catch(err => console.log('Solicitud de dietas al servidor fallida', err)); 
     }
 }
@@ -94,9 +92,8 @@ export function getDietsBackend() {
 export function getRecipesByName(name) {
     
     return (dispatch) => {dispatch(loading(true));
-        fetch(`http://localhost:3001/recipes?name=${name}`)
-        .then(response => response.json()) 
-        .then(data => {dispatch(saveRecipes(data)); dispatch(loading(false))})   
+        axios.get(`http://localhost:3001/recipes?name=${name}`)
+        .then(response => {dispatch(saveRecipes(response.data)); dispatch(loading(false))})   
         .catch(err => console.log('Solicitud de recetas por nombre al servidor fallida', err)); 
     }
 }
