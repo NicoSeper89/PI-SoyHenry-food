@@ -14,3 +14,31 @@
     border-radius: 1rem;
     font-weight: bolder;
 }
+
+.onBack:hover {
+    scale: 1.03
+}
+
+.onBack:active {
+    scale: 0.98
+}
+
+.delete {position:absolute;
+    right: 3%;
+    top: .5rem;
+    padding: 0.5rem 0rem;
+    width: 6rem;
+    color: rgb(255, 255, 255);
+    background-color: rgba(168, 0, 0, 0.98);
+    border: none;
+    border-radius: 1rem;
+    font-weight: bolder;
+}
+
+.delete:hover {
+    scale: 1.03
+}
+
+.delete:active {
+    scale: 0.98
+}

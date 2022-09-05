@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import RequiredInfo from "./RequiredInfo/RequiredInfo";
 import ChooseDiets from "./ChooseDiets/ChooseDiets";
 import Steps from "./Steps/Steps";
 import style from './Create.module.css';
-import { getRecipesBackend } from "../../../redux/actions";
+import { getRecipesBackend, newRecipe, resetRecipes } from "../../../redux/actions";
 
 const Create = () => {
 
     const history = useHistory();
     const dispatch = useDispatch()
+    const newRecipeCreate = useSelector(state => state.newRecipeCreate); 
 
     const [infoForm, setInfoForm] = useState({
         name: "",
@@ -28,7 +29,7 @@ const Create = () => {
     });
 
     const [enabledSubmit, setEnabledSubmit] = useState(false);
-    const [newRecipe, setNewRecipe] = useState(false)
+    /* const [newRecipe, setNewRecipe] = useState(false) */
 
     useEffect(() => {
 
@@ -113,7 +114,7 @@ const Create = () => {
 
     const goBack = () => {
 
-        newRecipe && dispatch(getRecipesBackend())
+        (newRecipeCreate)? dispatch(getRecipesBackend()): dispatch(resetRecipes());
 
         history.push('/recipes')
 
@@ -156,7 +157,7 @@ const Create = () => {
                 
                 if (!createAgain) {dispatch(getRecipesBackend()); return history.push('/recipes');}  
                 
-                setNewRecipe(true)
+                dispatch(newRecipe())
                 
                 setInfoForm({name: "",
                             image: "",
@@ -174,7 +175,7 @@ const Create = () => {
 
         } catch (err) {
             window.alert("error al conectar con el servidor! no se pudo crear la receta");
-            newRecipe && dispatch(getRecipesBackend())
+            newRecipeCreate && dispatch(getRecipesBackend())
             history.push('/recipes');
         }
 

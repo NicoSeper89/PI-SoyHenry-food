@@ -4,7 +4,8 @@ const initialState = {
     allRecipes: [],
     countRecipes: 0,
     allDiets: {},
-    page: 1
+    page: 1,
+    newRecipeCreate: false
 }
 
 const rootReducer = (state = initialState, actions) => {
@@ -16,7 +17,8 @@ const rootReducer = (state = initialState, actions) => {
                 backupRecipes: [...actions.payload],
                 allRecipes: actions.payload,
                 countRecipes: actions.payload.length,
-                page: 1
+                page: 1,
+                newRecipeCreate: false
             }
         case 'GET_ALL_DIETS':
             return {
@@ -46,19 +48,19 @@ const rootReducer = (state = initialState, actions) => {
             let newOrder = []
 
             if (typeOrder === "string") {
-                
-                newOrder = asc? [...state.allRecipes.sort((a, b) => (a[atribute].toLowerCase() > b[atribute].toLowerCase()) ? 1 : 
-                                                                    (a[atribute].toLowerCase() < b[atribute].toLowerCase()) ? -1 : 0)]:
-                                                                          
-                                [...state.allRecipes.sort((b, a) => (a[atribute].toLowerCase() > b[atribute].toLowerCase()) ? 1 : 
-                                                                    (a[atribute].toLowerCase() < b[atribute].toLowerCase()) ? -1 : 0)]
+
+                newOrder = asc ? [...state.allRecipes.sort((a, b) => (a[atribute].toLowerCase() > b[atribute].toLowerCase()) ? 1 :
+                    (a[atribute].toLowerCase() < b[atribute].toLowerCase()) ? -1 : 0)] :
+
+                    [...state.allRecipes.sort((b, a) => (a[atribute].toLowerCase() > b[atribute].toLowerCase()) ? 1 :
+                        (a[atribute].toLowerCase() < b[atribute].toLowerCase()) ? -1 : 0)]
             } else {
 
-                newOrder = asc? [...state.allRecipes.sort((a, b) => (a[atribute] > b[atribute]) ? 1 : 
-                                                                    (a[atribute] < b[atribute]) ? -1 : 0)]:
-                                                                          
-                                [...state.allRecipes.sort((b, a) => (a[atribute] > b[atribute]) ? 1 : 
-                                                                    (a[atribute] < b[atribute]) ? -1 : 0)]
+                newOrder = asc ? [...state.allRecipes.sort((a, b) => (a[atribute] > b[atribute]) ? 1 :
+                    (a[atribute] < b[atribute]) ? -1 : 0)] :
+
+                    [...state.allRecipes.sort((b, a) => (a[atribute] > b[atribute]) ? 1 :
+                        (a[atribute] < b[atribute]) ? -1 : 0)]
             }
 
             return {
@@ -91,9 +93,9 @@ const rootReducer = (state = initialState, actions) => {
 
             return {
                 ...state,
-                loading: actions.payload 
+                loading: actions.payload
             }
-            
+
         case 'SAVE_RECIPES':
 
             return {
@@ -101,6 +103,13 @@ const rootReducer = (state = initialState, actions) => {
                 allRecipes: actions.payload,
                 countRecipes: actions.payload.length,
                 page: 1
+            }
+
+        case 'NEW_RECIPE':
+
+            return {
+                ...state,
+                newRecipeCreate: true
             }
 
         default: return { ...state };

@@ -64,6 +64,12 @@ export function saveRecipes(recipes) {
     }
 }
 
+export function newRecipe() {
+    return {
+        type: "NEW_RECIPE"
+    }
+}
+
 export function getRecipesBackend() {
     return (dispatch) => {dispatch(loading(true));
         fetch('http://localhost:3001/recipes')

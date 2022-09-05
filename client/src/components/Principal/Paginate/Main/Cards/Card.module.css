@@ -66,3 +66,26 @@
     padding: .4rem 1rem;
     border-radius: 1rem;
 }
+
+.delete {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.5rem;
+    right: .1rem;
+    top: .1rem;
+    background-color: rgba(153, 1, 1, 0.705);
+    border: none;
+    color: white;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.delete:hover {
+    scale: 1.02
+}
+
+.delete:active{
+    scale: 0.97
+}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import {connect} from "react-redux";
 import style from './Header.module.css';
 import { NavLink } from 'react-router-dom';
-import { getRecipesByName,resetRecipes } from "../../../redux/actions";
+import { getRecipesByName, getRecipesBackend, resetRecipes } from "../../../redux/actions";
 
 
 class Header extends Component {
@@ -33,32 +33,37 @@ class Header extends Component {
         
     }
 
-    returnRecipes = (e) => {
+    returnHome = (e) => {
 
         e.preventDefault();
 
+        (this.props.newRecipeCreate)? this.props.getRecipesBackend(): this.props.resetRecipes()
+
         this.props.history.push('/');
 
-        this.props.resetRecipes()
+    }
 
+    returnPaginate = (e) => {
+
+        e.preventDefault();
+
+        (this.props.newRecipeCreate)? this.props.getRecipesBackend(): this.props.resetRecipes()
+
+        this.props.history.push('/recipes')
     }
     
     render() {
-
-        console.log(this.props.location)
         
         return (
             <div className={style.header}>
 
-                <img onClick={this.returnRecipes} className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
+                <img onClick={this.returnHome} className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
                     
                 <div className={style.inputsContainer}>
                     {
                     (this.props.location.pathname === "/recipes/create")
                                 ? 
-                        (<NavLink style={{textDecoration: 'none'}} to="/recipes">
-                            <button className={style.buttonCreate}>Volver</button>
-                        </NavLink>)
+                        <button onClick={this.returnPaginate} className={style.buttonCreate}>Volver</button>
                         :
                         (<>
                             <NavLink style={{textDecoration: 'none'}} to="/recipes/create">
@@ -76,9 +81,14 @@ class Header extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {newRecipeCreate: state.newRecipeCreate} 
+}
+
 const mapDispatchToProps = (dispatch) => ({
     getRecipesByName: (name) => dispatch(getRecipesByName(name)),
-    resetRecipes: () => dispatch(resetRecipes())
+    resetRecipes: () => dispatch(resetRecipes()),
+    getRecipesBackend: () => dispatch(getRecipesBackend())
   })
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
