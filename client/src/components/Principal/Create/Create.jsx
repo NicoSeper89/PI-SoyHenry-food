@@ -144,9 +144,9 @@ const Create = () => {
         try {
             e.preventDefault();
 
-            const res = await axios.post('http://localhost:3001/recipes', {...infoForm, 
-                                                                            name: infoForm.name.trim(),
-                                                                            summary: infoForm.summary.trim()})
+            const res = await axios.post('/recipes', {...infoForm, 
+                                                        name: infoForm.name.trim(),
+                                                        summary: infoForm.summary.trim()})
 
             if (res.status === 404){ 
                 window.alert("error al crear receta! No repita el nombre de una receta ya creada y complete todos los campos requeridos")

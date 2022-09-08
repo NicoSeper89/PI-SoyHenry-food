@@ -72,7 +72,7 @@ export function newRecipe() {
 
 export function getRecipesBackend() {
     return (dispatch) => {dispatch(loading(true));
-        axios.get('http://localhost:3001/recipes')
+        axios.get('/recipes')
         .then(response => {dispatch(getAllRecipes(response.data));
                        dispatch(getDietsBackend())})   
         .catch(err => {window.alert("ocurrio un error al cargar las recetas, recargue la pagina por favor");
@@ -83,7 +83,7 @@ export function getRecipesBackend() {
 
 export function getDietsBackend() {
     return (dispatch) => {
-        axios.get('http://localhost:3001/diets')
+        axios.get('/diets')
         .then(response => dispatch(getAllDiets(response.data)))   
         .catch(err => console.log('Solicitud de dietas al servidor fallida', err)); 
     }
@@ -92,7 +92,7 @@ export function getDietsBackend() {
 export function getRecipesByName(name) {
     
     return (dispatch) => {dispatch(loading(true));
-        axios.get(`http://localhost:3001/recipes?name=${name}`)
+        axios.get(`/recipes?name=${name}`)
         .then(response => {dispatch(saveRecipes(response.data)); dispatch(loading(false))})   
         .catch(err => console.log('Solicitud de recetas por nombre al servidor fallida', err)); 
     }

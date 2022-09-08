@@ -15,7 +15,7 @@ const Details = ({id}) => {
 
     useEffect(() => {
         
-        axios.get(`http://localhost:3001/recipes/${id}`)
+        axios.get(`/recipes/${id}`)
         .then(response => setRecipe(response.data))
         .catch(() => setError(true))
 
@@ -35,7 +35,7 @@ const Details = ({id}) => {
                 
         if (sureToDeleted) { 
 
-            const res = await axios.delete(`http://localhost:3001/recipes/${id}`)
+            const res = await axios.delete(`/recipes/${id}`)
 
             if (res.status === 500) return window.alert("no se pudo eliminar la receta");
     

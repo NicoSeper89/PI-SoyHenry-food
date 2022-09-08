@@ -14,7 +14,7 @@ class Card extends Component {
                 
         if (sureToDeleted) { 
 
-            const res = await axios.delete(`http://localhost:3001/recipes/${this.props.id}`)
+            const res = await axios.delete(`/recipes/${this.props.id}`)
 
             if (res.status === 500) return window.alert("no se pudo eliminar la receta");
     
