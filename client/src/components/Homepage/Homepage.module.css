@@ -15,18 +15,18 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 25em;
-    min-height: 23em;
+    width: 24em;
+    min-height: 24em;
     padding: 2em;
-    border: 4px solid rgb(255, 255, 255);
-    box-shadow: rgba(189, 189, 189, 0.712) 0px 0px 500px 54px, rgb(255, 242, 230) 0px 0px 15px 10px;
+    border: 11px solid rgb(255, 255, 255);
+    box-shadow: rgba(255, 207, 162, 0.541) 0px 0px 500px 54px, rgb(255, 242, 230) 0px 0px 15px 10px;
     background: url("https://i.postimg.cc/vDF82wfx/istockphoto-636388930-612x612.jpg");
     background-size: cover;
     background-position: center;
 }
 
 .card > img {
-    width: 20em;
+    width: 24em;
     opacity: 0.8;
 }
 

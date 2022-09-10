@@ -7,7 +7,7 @@ export default function Homepage() {
     return (
         <div className={style.background} >
             <div className={style.card}>
-                <img src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
+                <img src="https://i.postimg.cc/GhR38WC4/newLogo.png" alt="logo" />
                 <NavLink to="/recipes">
                     <button className={style.button}>INGRESAR</button>
                 </NavLink>
