@@ -57,7 +57,7 @@ class Header extends Component {
         return (
             <div className={style.header}>
 
-                <img onClick={this.returnHome} className={style.logo} src="https://i.postimg.cc/QMJG1fzd/logohenryfoods.png" alt="logo" />
+                <img onClick={this.returnHome} className={style.logo} src="https://i.postimg.cc/GhR38WC4/newLogo.png" alt="logo" />
                     
                 <div className={style.inputsContainer}>
                     {
