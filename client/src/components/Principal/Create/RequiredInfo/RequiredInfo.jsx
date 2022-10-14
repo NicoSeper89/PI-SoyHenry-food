@@ -16,6 +16,7 @@ class RequiredInfo extends Component {
                 <label >Nombre*
                     <input className={style[`dato${!nameValidation ? `Error` : ""}`]} 
                         name={"name"}
+                        required
                         value={name}
                         onChange={changeHandler}
                         type="text"

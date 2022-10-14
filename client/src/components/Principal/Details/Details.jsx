@@ -13,6 +13,15 @@ const Details = ({id}) => {
     const [error, setError] = useState(false);
     const dispatch = useDispatch()
 
+    useEffect(()=>{
+        
+        window.scroll({
+            top: 0,
+            left: 0
+          })
+
+    })
+
     useEffect(() => {
         
         axios.get(`/recipes/${id}`)
