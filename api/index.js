@@ -34,7 +34,7 @@ const typesOfDiets = ["dairy free",
 // Syncing all the models at once.
 conn.sync({ force: false })
     .then(() => {
-      server.listen(process.env.PORT, () => {
+      server.listen(process.env.PGPORT, () => {
           console.log('%s listening at 3001'); // eslint-disable-line no-console
           typesOfDiets.map((type) => Diet.findOrCreate({where: {name: type}}))
         });
