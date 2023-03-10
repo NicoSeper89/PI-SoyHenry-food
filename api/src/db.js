@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE, PGPORT } = process.env;
 let sequelize = process.env.DATABASE_URL
-  ? new Sequelize(process.env.DATABASE_URL, {
+  ? new Sequelize({
       database: PGDATABASE,
       dialect: "postgres",
       host: PGHOST,
