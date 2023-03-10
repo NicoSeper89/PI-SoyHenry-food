@@ -3,7 +3,7 @@ const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE, PGPORT } = process.env;
-let sequelize = process.env.DATABASE_URL
+let sequelize = process.env.NODE_ENV === 'production'
   ? new Sequelize({
       database: PGDATABASE,
       dialect: "postgres",
