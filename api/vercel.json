@@ -1,7 +1,7 @@
 {
     "functions": {
       "api/index.js": {
-        "runtime": "nodejs16.14.2"
+        "runtime": "node@16.14.2"
       }
     }
   }
