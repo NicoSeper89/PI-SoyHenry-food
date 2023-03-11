@@ -3,14 +3,14 @@
     "builds": [
       {
         "src": "index.js",
-        "use": "@vercel/node"
+        "use": "@now/node"
       }
     ],
     "routes": [
-        { "src": "/api/recipes", "method": "GET", "dest": "/api/recipes" },
-        { "src": "/api/recipes/:id", "method": "GET", "dest": "/api/recipes/:id" },
-        { "src": "/api/recipes", "method": "POST", "dest": "/api/recipes" },
-        { "src": "/api/recipes/:id", "method": "DELETE", "dest": "/api/recipes/:id" },
-        { "src": "/api/diets", "method": "GET", "dest": "/api/diets" }
+        { "src": "/recipes", "method": "GET", "dest": "/src/routes/recipes.js" },
+        { "src": "/recipes/:id", "method": "GET", "dest": "/src/routes/recipes.js" },
+        { "src": "/recipes", "method": "POST", "dest": "/src/routes/recipes.js" },
+        { "src": "/recipes/:id", "method": "DELETE", "dest": "/src/routes/recipes.js" },
+        { "src": "/diets", "method": "GET", "dest": "/src/routes/diets.js" }
       ]
   }
