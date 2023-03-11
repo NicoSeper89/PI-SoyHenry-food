@@ -39,3 +39,4 @@ conn.sync({ force: false })
           typesOfDiets.map((type) => Diet.findOrCreate({where: {name: type}}))
         });
     });
+ 
