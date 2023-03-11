@@ -1,7 +1,0 @@
-{
-    "functions": {
-      "api/index.js": {
-        "runtime": "node@16.14.2"
-      }
-    }
-  }
