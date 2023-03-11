@@ -1,6 +1,6 @@
 {
     "functions": {
-      "api/index.js": {
+      "/index.js": {
         "runtime": "node@16.14.2"
       }
     }
