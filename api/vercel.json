@@ -1,0 +1,7 @@
+{
+    "functions": {
+      "api/index.js": {
+        "runtime": "node14"
+      }
+    }
+  }
