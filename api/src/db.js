@@ -2,30 +2,21 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE, PGPORT } = process.env;
+const { PGUSER, PGPASSWORD, PGHOST, PGDATABASE } = process.env;
 let sequelize = process.env.NODE_ENV === 'production'
-  ? new Sequelize({
-      database: PGDATABASE,
-      dialect: "postgres",
-      host: PGHOST,
-      port: PGPORT,
-      username: PGUSER,
-      password: PGPASSWORD,
-      pool: {
-        max: 3,
-        min: 1,
-        idle: 10000,
+  ? new Sequelize(process.env.DATABASE_URL, {
+    dialect: "postgres",
+    protocol: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        // Ref.: https://github.com/brianc/node-postgres/issues/2009
+        rejectUnauthorized: false,
       },
-      dialectOptions: {
-        ssl: {
-          require: true,
-          // Ref.: https://github.com/brianc/node-postgres/issues/2009
-          rejectUnauthorized: false,
-        },
-        keepAlive: true,
-      },
-      ssl: true,
-    })
+      keepAlive: true,
+    },
+    ssl: true,
+  })
   : new Sequelize(
       `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`,
       { logging: false, native: false }
@@ -81,3 +72,27 @@ module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
 };
+
+
+/* new Sequelize({
+  database: PGDATABASE,
+  dialect: "postgres",
+  host: PGHOST,
+  port: PGPORT,
+  username: PGUSER,
+  password: PGPASSWORD,
+  pool: {
+    max: 3,
+    min: 1,
+    idle: 10000,
+  },
+  dialectOptions: {
+    ssl: {
+      require: true,
+      // Ref.: https://github.com/brianc/node-postgres/issues/2009
+      rejectUnauthorized: false,
+    },
+    keepAlive: true,
+  },
+  ssl: true,
+}) */
